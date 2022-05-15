@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #1C1C1C;
+    color: white;
+}
+
+.error-message{
+    color: #ff0000;
+}
+
+.alert{
+    padding: 5px;
+}

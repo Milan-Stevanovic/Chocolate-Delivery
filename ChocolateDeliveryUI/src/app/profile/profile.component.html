@@ -1,0 +1,98 @@
+<div class="container">
+    <form [formGroup]="profileEditForm" (ngSubmit)="ProfileEdit()">
+
+        <div class="image-holder">
+            <label for="file-input">
+                <img src="/assets/icons/profile-icon.png" style="max-height: 200px;"/>
+            </label>
+            <input id="file-input" type="file" class="form-control" formControlName="profilePicture" (change)="TestPicture()"/>
+        </div>
+
+
+        <table style="width: 50%; margin:auto;">
+            <tr>
+                <td colspan="2">
+                    Username
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="text" class="form-control" formControlName="username"/>
+                </td>
+            </tr>
+    
+            <tr>
+                <td colspan="2">
+                    Email
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="email" class="form-control" formControlName="email"/>
+                </td>
+            </tr>
+    
+            <tr>
+                <td style="width: 50%;">Password</td>
+                <td style="width: 50%;">Confirm Password</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="password" class="form-control" formControlName="password"/>
+                </td>
+                <td>
+                    <input type="password" class="form-control" formControlName="confirmPassword"/>
+                </td>
+            </tr>
+    
+            <tr>
+                <td style="width: 50%;">First Name</td>
+                <td style="width: 50%;">Last Name</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" class="form-control" formControlName="firstName"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" formControlName="lastName"/>
+                </td>
+            </tr>
+    
+            <tr>
+                <td colspan="2">Date of Birth</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="date" class="form-control" formControlName="dateOfBirth"/>
+                </td>
+            </tr>
+    
+            <tr>
+                <td colspan="2">Address</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="text" class="form-control" formControlName="address"/>
+                </td>
+            </tr>
+    <!--
+
+        <tr>
+            <td colspan="2">Profile Picture</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="file" class="form-control" formControlName="profilePicture"/>
+            </td>
+        </tr>
+
+    -->
+            <br/>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" class="btn btn-light form-control" value="Edit Profile"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,173 @@
+<h1>Register</h1>
+<hr>
+<form [formGroup]="registerForm" (ngSubmit)="UserRegister()">
+    <table style="width: 100%;">
+        <tr>
+            <td colspan="2">
+                Username
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="text" class="form-control" formControlName="username"/>
+
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                    <div *ngIf="username.errors?.['required']">
+                        Username is required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                Email
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="email" class="form-control" formControlName="email"/>
+
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors?.['required']">
+                        Email is required.
+                    </div>
+                    <div *ngIf="email.errors?.['email']">
+                        Email not valid.
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 50%;">Password</td>
+            <td style="width: 50%;">Confirm Password</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="password" class="form-control" formControlName="password"/>
+            </td>
+            <td>
+                <input type="password" class="form-control" formControlName="confirmPassword"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors?.['required']">
+                        Password is required.
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
+                    <div *ngIf="confirmPassword.errors?.['required']">
+                        Confirm Password is required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 50%;">First Name</td>
+            <td style="width: 50%;">Last Name</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="form-control" formControlName="firstName"/>
+            </td>
+            <td>
+                <input type="text" class="form-control" formControlName="lastName"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                    <div *ngIf="firstName.errors?.['required']">
+                        First Name is required.
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+                    <div *ngIf="lastName.errors?.['required']">
+                        Last Name is required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">Date of Birth</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="date" class="form-control" formControlName="dateOfBirth"/>
+
+                <div *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)" class="alert alert-danger">
+                    <div *ngIf="dateOfBirth.errors?.['required']">
+                        Date of Birth is required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">Address</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="text" class="form-control" formControlName="address"/>
+
+                <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+                    <div *ngIf="address.errors?.['required']">
+                        Address is required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">User Type</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <select class="form-control" formControlName="userType">
+                    <option value="USER">User</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="DELIVERER">Deliverer</option>
+                </select>
+
+                <div *ngIf="userType.invalid && (userType.dirty || userType.touched)" class="alert alert-danger">
+                    <div *ngIf="userType.errors?.['required']">
+                        User Type is required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">Profile Picture</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="file" class="form-control" formControlName="profilePicture"/>
+
+                <div *ngIf="profilePicture.invalid && (profilePicture.dirty || profilePicture.touched)" class="alert alert-danger">
+                    <div *ngIf="profilePicture.errors?.['required']">
+                        Profile Picture is required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <br/>
+        <tr>
+            <td colspan="2">
+                <input type="submit" class="btn btn-light form-control" value="Register"/>
+            </td>
+        </tr>
+    </table>
+</form>

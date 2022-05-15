@@ -1,0 +1,14 @@
+.image-holder{
+    width: fit-content;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.image-holder > input{
+    display: none;
+}
+
+.image-holder:hover{
+    opacity: 0.4;
+    transition: transform 0.3s, opacity 0.3s;
+}
