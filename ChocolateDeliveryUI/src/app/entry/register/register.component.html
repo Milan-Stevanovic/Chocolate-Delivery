@@ -135,9 +135,9 @@
         <tr>
             <td colspan="2">
                 <select class="form-control" formControlName="userType">
-                    <option value="USER">User</option>
-                    <option value="ADMIN">Admin</option>
+                    <option value="CUSTOMER">Customer</option>
                     <option value="DELIVERER">Deliverer</option>
+                    <option value="ADMIN">Admin</option>
                 </select>
 
                 <div *ngIf="userType.invalid && (userType.dirty || userType.touched)" class="alert alert-danger">

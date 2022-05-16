@@ -1,0 +1,2 @@
+- Add AutoMapper
+- Finish Registration and Login

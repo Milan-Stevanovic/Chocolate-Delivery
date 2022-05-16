@@ -28,6 +28,16 @@ export class ProfileComponent implements OnInit{
     dateOfBirth : new FormControl("", [Validators.required]),
     address : new FormControl("", [Validators.required])
   })
+
+  get username() { return this.profileEditForm.get('username') as FormControl; } 
+  get email() { return this.profileEditForm.get('email') as FormControl; } 
+  get password() { return this.profileEditForm.get('password') as FormControl; } 
+  get confirmPassword() { return this.profileEditForm.get('confirmPassword') as FormControl; } 
+  get firstName() { return this.profileEditForm.get('firstName') as FormControl; } 
+  get lastName() { return this.profileEditForm.get('lastName') as FormControl; } 
+  get dateOfBirth() { return this.profileEditForm.get('dateOfBirth') as FormControl; } 
+  get address() { return this.profileEditForm.get('address') as FormControl; } 
+  get profilePicture() { return this.profileEditForm.get('profilePicture') as FormControl; } 
   
 
   ngOnInit(): void {}

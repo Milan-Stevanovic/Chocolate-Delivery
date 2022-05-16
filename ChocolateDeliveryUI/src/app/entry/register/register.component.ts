@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Registration } from "src/app/shared/models/registration.model";
+import { UserService } from "src/app/shared/services/user.service";
 
 @Component({
     selector: 'app-register',
@@ -9,7 +12,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 export class RegisterComponent implements OnInit{
     
-    constructor() { }
+    constructor(private service: UserService, private router:Router) { }
+
     ngOnInit(): void {}
     
     
@@ -40,5 +44,22 @@ export class RegisterComponent implements OnInit{
     
     UserRegister()
     {
+        if(this.registerForm.valid)
+        {
+            let registration: Registration = new Registration();
+            registration.username = this.username.value;
+            registration.email = this.email.value;
+            registration.password = this.password.value;
+            registration.confirmPassword = this.confirmPassword.value;
+            registration.firstName = this.firstName.value;
+            registration.lastName = this.lastName.value;
+            registration.dateOfBirth = this.dateOfBirth.value;
+            registration.address = this.address.value;
+            registration.userType = this.userType.value;
+            registration.profilePicture = this.profilePicture.value;
+            console.log(registration.username + " " + registration.password);
+
+            this.service.register(registration).subscribe();
+        }
     }
 }

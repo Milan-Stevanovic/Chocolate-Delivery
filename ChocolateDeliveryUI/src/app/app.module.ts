@@ -8,16 +8,17 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboars.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
-import { LoginComponent } from './startup/login/login.component';
-import { RegisterComponent } from './startup/register/register.component';
-import { StartUpComponent } from './startup/startup.component';
+import { LoginComponent } from './entry/login/login.component';
+import { RegisterComponent } from './entry/register/register.component';
+import { EntryComponent } from './entry/entry.component';
+import { UserService } from './shared/services/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    StartUpComponent,
+    EntryComponent,
     NavbarComponent,
     DashboardComponent,
     ProfileComponent,
@@ -29,7 +30,9 @@ import { StartUpComponent } from './startup/startup.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
