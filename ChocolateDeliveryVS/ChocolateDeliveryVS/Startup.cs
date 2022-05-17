@@ -1,5 +1,7 @@
+using AutoMapper;
 using ChocolateDeliveryVS.Infrastructure;
 using ChocolateDeliveryVS.Interfaces;
+using ChocolateDeliveryVS.Mapping;
 using ChocolateDeliveryVS.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -102,8 +104,11 @@ namespace ChocolateDeliveryVS
 
             services.AddDbContext<DeliveryDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeliveryDatabase")));
 
+            var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
-            services.AddSingleton<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

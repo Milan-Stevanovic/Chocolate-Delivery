@@ -21,10 +21,19 @@ namespace ChocolateDeliveryVS.Controllers
             _userService = userService;
         }
 
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterDto registerDto)
+        [HttpGet("getAllUsers")]
+        public IActionResult GetAllUsers()
         {
-            return Ok(_userService.Register(registerDto));
+            return Ok(_userService.GetAllUsers());
+        }
+
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] UserDto userDto)
+        {
+            if (_userService.Register(userDto))
+                return Ok();
+            else
+                return Problem();
         }
     }
 }
