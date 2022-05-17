@@ -45,7 +45,7 @@
         </tr>
         <tr>
             <td>
-                <input type="password" class="form-control" formControlName="password"/>
+                <input type="password" class="form-control" formControlName="password" [(ngModel)]="passwordInputText"/>
             </td>
             <td>
                 <input type="password" class="form-control" formControlName="confirmPassword"/>
@@ -64,6 +64,9 @@
                 <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
                     <div *ngIf="confirmPassword.errors?.['required']">
                         Confirm Password is required.
+                    </div>
+                    <div *ngIf="confirmPassword.errors?.['mustMatch']">
+                        Passwords must match.
                     </div>
                 </div>
             </td>

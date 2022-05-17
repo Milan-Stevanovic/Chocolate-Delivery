@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { MessageDialogComponent } from "src/app/dialogs/messageDialog/messageDialog.component";
+import { Message } from "src/app/shared/models/message.model";
 import { Registration } from "src/app/shared/models/registration.model";
 import { UserService } from "src/app/shared/services/user.service";
 
@@ -12,16 +15,17 @@ import { UserService } from "src/app/shared/services/user.service";
 
 export class RegisterComponent implements OnInit{
     
-    constructor(private service: UserService, private router:Router) { }
+    constructor(private service: UserService, private router:Router, private matDialog: MatDialog) { }
 
     ngOnInit(): void {}
     
+    passwordInputText?: string = "";
     
     registerForm = new FormGroup({
         username : new FormControl("", Validators.required),
         email : new FormControl("", [Validators.required, Validators.email]),
         password : new FormControl("", [Validators.required]),
-        confirmPassword : new FormControl("", [Validators.required]),
+        confirmPassword : new FormControl("", [Validators.required, this.mustMatch()]),
         firstName : new FormControl("", [Validators.required]),
         lastName : new FormControl("", [Validators.required]),
         dateOfBirth : new FormControl("", [Validators.required]),
@@ -29,6 +33,7 @@ export class RegisterComponent implements OnInit{
         userType: new FormControl("", [Validators.required]),
         profilePicture : new FormControl("", [Validators.required])
     })
+
 
     get username() { return this.registerForm.get('username') as FormControl; } 
     get email() { return this.registerForm.get('email') as FormControl; } 
@@ -59,7 +64,45 @@ export class RegisterComponent implements OnInit{
             registration.profilePicture = this.profilePicture.value;
             console.log(registration.username + " " + registration.password);
 
-            this.service.register(registration).subscribe();
+            this.service.register(registration).subscribe(
+                data => 
+                {
+                    let message: Message = new Message();
+                    message.title = "Account successfully created";
+                    message.messageText = "Please log in to continue!"
+                    this.matDialog.open(MessageDialogComponent,
+                        {
+                            data: message
+                        })
+                },
+                error => 
+                {
+                    let message: Message = new Message();
+                    message.title = "Error Occured";
+                    message.messageText = "Something went wrong"
+                    this.matDialog.open(MessageDialogComponent,
+                        {
+                            data: message
+                        })
+                }
+            );
         }
+        else
+        {
+            let message: Message = new Message();
+            message.title = "Form Invalid";
+            message.messageText = "Please check if fields are correctly filled"
+            this.matDialog.open(MessageDialogComponent,
+                {
+                    data: message
+                })
+        }
+    }
+    
+    mustMatch(): ValidatorFn {
+        return (control: AbstractControl): ValidationErrors | null => {
+            const passwordMatch = this.passwordInputText === control.value;
+            return passwordMatch ? null : { mustMatch: {value: true} };
+        };
     }
 }

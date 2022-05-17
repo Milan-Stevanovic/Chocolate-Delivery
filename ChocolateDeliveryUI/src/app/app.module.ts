@@ -12,6 +12,9 @@ import { LoginComponent } from './entry/login/login.component';
 import { RegisterComponent } from './entry/register/register.component';
 import { EntryComponent } from './entry/entry.component';
 import { UserService } from './shared/services/user.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MessageDialogComponent } from './dialogs/messageDialog/messageDialog.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +25,16 @@ import { UserService } from './shared/services/user.service';
     NavbarComponent,
     DashboardComponent,
     ProfileComponent,
+    MessageDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     UserService
