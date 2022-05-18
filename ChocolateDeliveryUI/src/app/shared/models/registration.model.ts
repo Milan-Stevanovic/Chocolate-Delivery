@@ -8,6 +8,6 @@ export class Registration
     lastName: string = "";
     dateOfBirth: string = "";
     address: string = "";
-    userType: string = "";
+    role: string = "";
     profilePicture: string = "";
 }

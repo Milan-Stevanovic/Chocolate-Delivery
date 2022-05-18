@@ -133,19 +133,19 @@
         </tr>
 
         <tr>
-            <td colspan="2">User Type</td>
+            <td colspan="2">User Role</td>
         </tr>
         <tr>
             <td colspan="2">
-                <select class="form-control" formControlName="userType">
+                <select class="form-control" formControlName="role">
                     <option value="CUSTOMER">Customer</option>
                     <option value="DELIVERER">Deliverer</option>
                     <option value="ADMIN">Admin</option>
                 </select>
 
-                <div *ngIf="userType.invalid && (userType.dirty || userType.touched)" class="alert alert-danger">
-                    <div *ngIf="userType.errors?.['required']">
-                        User Type is required.
+                <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger">
+                    <div *ngIf="role.errors?.['required']">
+                        Role is required.
                     </div>
                 </div>
             </td>

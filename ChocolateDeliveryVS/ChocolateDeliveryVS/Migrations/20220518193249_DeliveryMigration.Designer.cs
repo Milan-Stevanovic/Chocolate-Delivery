@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChocolateDeliveryVS.Migrations
 {
     [DbContext(typeof(DeliveryDbContext))]
-    [Migration("20220516200731_DeliveryMigration")]
+    [Migration("20220518193249_DeliveryMigration")]
     partial class DeliveryMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,11 +49,14 @@ namespace ChocolateDeliveryVS.Migrations
                     b.Property<string>("ProfilePicture")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Type")
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Verified")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

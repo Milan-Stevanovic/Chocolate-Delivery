@@ -16,7 +16,8 @@ namespace ChocolateDeliveryVS.Models
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
-        public string Type { get; set; }
+        public string Role { get; set; }
         public string ProfilePicture { get; set; }
+        public bool Verified { get; set; }
     }
 }

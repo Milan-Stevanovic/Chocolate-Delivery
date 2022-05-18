@@ -29,24 +29,55 @@ namespace ChocolateDeliveryVS.Services
         public bool Register(UserDto userDto)
         {
             User user = _mapper.Map<User>(userDto);
-
             bool valid = true;
+
+            // Validation
+            if (userDto.Password != userDto.ConfirmPassword)
+                valid = false;
+
+            if (string.IsNullOrEmpty(user.Username) ||
+                string.IsNullOrEmpty(user.Email) ||
+                string.IsNullOrEmpty(user.Password) ||
+                string.IsNullOrEmpty(user.FirstName) ||
+                string.IsNullOrEmpty(user.LastName) ||
+                string.IsNullOrEmpty(user.Address) ||
+                string.IsNullOrEmpty(user.Role) ||
+                string.IsNullOrEmpty(user.ProfilePicture))
+            {
+                valid = false;
+            }
+
 
             foreach (var item in _dbContext.Users.ToList())
             {
-                if(item.Email.Equals(user.Email) || item.Username.Equals(user.Username))
+                if (item.Email.Equals(user.Email) || item.Username.Equals(user.Username))
                 {
+                    // Username or Email not Unique
                     valid = false;
                 }
             }
 
-            if(valid)
+
+            if (valid)
             {
+                // Valid
+                if (user.Role.Equals("DELIVERER"))
+                    user.Verified = false;
+                else
+                    user.Verified = true;
+
+                // Hash Password that will be written in database
+                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+
                 _dbContext.Users.Add(user);
                 _dbContext.SaveChanges();
                 return true;
             }
-            return false;
+            else
+            {
+                // Not Valid
+                return false;
+            }
         }
 
     }
