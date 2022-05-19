@@ -35,5 +35,15 @@ namespace ChocolateDeliveryVS.Controllers
             else
                 return Problem();
         }
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] UserDto userDto)
+        {
+            TokenDto token = _userService.Login(userDto);
+            if (token != null)
+                return Ok(token);
+            else
+                return Problem();
+        }
     }
 }

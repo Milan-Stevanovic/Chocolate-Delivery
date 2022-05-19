@@ -1,9 +1,4 @@
 <div class="navbar-holder">
-    <a routerLink='/user'>
-        <div class="navbar-item">
-            ChocolateFactory
-        </div>
-    </a>
 
     <a routerLink='/dashboard'>
         <div class="navbar-item">
@@ -13,7 +8,7 @@
 
     <!-- TODO : Add Username next to logout button when user is singed in -->
     
-    <a href="#">
+    <a (click)="UserLogout()">
         <div class="navbar-item" style="float: right;">
             Log Out
         </div>

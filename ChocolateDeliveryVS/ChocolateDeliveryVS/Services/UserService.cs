@@ -3,9 +3,14 @@ using ChocolateDeliveryVS.DTO;
 using ChocolateDeliveryVS.Infrastructure;
 using ChocolateDeliveryVS.Interfaces;
 using ChocolateDeliveryVS.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ChocolateDeliveryVS.Services
@@ -13,12 +18,14 @@ namespace ChocolateDeliveryVS.Services
     public class UserService : IUserService
     {
         private readonly IMapper _mapper;
+        private readonly IConfigurationSection _secretKey;
         private readonly DeliveryDbContext _dbContext;
 
-        public UserService(IMapper mapper, DeliveryDbContext dbContext)
+        public UserService(IMapper mapper, DeliveryDbContext dbContext, IConfiguration config)
         {
             _mapper = mapper;
             _dbContext = dbContext;
+            _secretKey = config.GetSection("SecretKey");
         }
 
         public List<UserDisplayDto> GetAllUsers()
@@ -80,5 +87,49 @@ namespace ChocolateDeliveryVS.Services
             }
         }
 
+        public TokenDto Login(UserDto dto)
+        {
+            User user = null;
+            try
+            {
+                user = _dbContext.Users.First(x => x.Email == dto.Email);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            if (user == null)
+                return null;
+
+            if (BCrypt.Net.BCrypt.Verify(dto.Password, user.Password)) //Uporedjujemo hes pasvorda iz baze i unetog pasvorda
+            {
+                List<Claim> claims = new List<Claim>();
+                //Mozemo dodati Claimove u token, oni ce biti vidljivi u tokenu i mozemo ih koristiti za autorizaciju
+                if (user.Role== "ADMIN")
+                    claims.Add(new Claim(ClaimTypes.Role, "ADMIN")); //Add user type to claim
+                if (user.Role == "CUSTOMER")
+                    claims.Add(new Claim(ClaimTypes.Role, "CUSTOMER")); //Add user type to claim
+                if (user.Role == "DELIVERER")
+                    claims.Add(new Claim(ClaimTypes.Role, "DELIVERER")); //Add user type to claim
+
+                //Kreiramo kredencijale za potpisivanje tokena. Token mora biti potpisan privatnim kljucem
+                //kako bi se sprecile njegove neovlascene izmene
+                SymmetricSecurityKey secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey.Value));
+                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                var tokenOptions = new JwtSecurityToken(
+                    issuer: "https://localhost:44398", //url servera koji je izdao token
+                    claims: claims, //claimovi
+                    expires: DateTime.Now.AddMinutes(15), //vazenje tokena u minutama
+                    signingCredentials: signinCredentials //kredencijali za potpis
+                );
+                string tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                return new TokenDto { Token = tokenString };
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

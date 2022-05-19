@@ -9,6 +9,7 @@ namespace ChocolateDeliveryVS.Interfaces
     public interface IUserService
     {
         List<UserDisplayDto> GetAllUsers();
-        bool Register(UserDto sserDto);
+        bool Register(UserDto userDto);
+        TokenDto Login(UserDto dto);
     }
 }

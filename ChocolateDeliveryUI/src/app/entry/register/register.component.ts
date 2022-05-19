@@ -62,7 +62,6 @@ export class RegisterComponent implements OnInit{
             registration.address = this.address.value;
             registration.role = this.role.value;
             registration.profilePicture = this.profilePicture.value;
-            console.log(registration.username + " " + registration.password);
 
             this.service.register(registration).subscribe(
                 data => 

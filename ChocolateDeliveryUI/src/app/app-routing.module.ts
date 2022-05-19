@@ -5,8 +5,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { EntryComponent } from './entry/entry.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/user', pathMatch: 'full' },
-  { path: 'user', component: EntryComponent },
+  { path: '', redirectTo: '/entry', pathMatch: 'full' },
+  { path: 'entry', component: EntryComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'profile', component: ProfileComponent }
 ];
