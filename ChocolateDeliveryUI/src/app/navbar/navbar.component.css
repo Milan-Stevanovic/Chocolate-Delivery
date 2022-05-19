@@ -18,3 +18,7 @@ a{
 .navbar-item:hover{
     background-color: #2e2e2e;
 }
+
+.log-out :hover{
+    cursor: pointer;
+}

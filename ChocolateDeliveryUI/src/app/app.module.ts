@@ -25,7 +25,7 @@ import { MessageDialogComponent } from './dialogs/messageDialog/messageDialog.co
     NavbarComponent,
     DashboardComponent,
     ProfileComponent,
-    MessageDialogComponent
+    MessageDialogComponent,
   ],
   imports: [
     BrowserModule,

@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit{
             this.service.login(login).subscribe(
                 (data: Token) => 
                 {
-                    console.log("LOGGED IN!");
                     localStorage.setItem('token', data.token);
 
                     this.router.navigateByUrl('/dashboard');
@@ -58,6 +57,8 @@ export class LoginComponent implements OnInit{
                         {
                             data: message
                         })
+
+                    // let decodedToken = JSON.parse(atob(data.token.split('.')[1]));
                 },
                 error => 
                 {

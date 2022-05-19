@@ -107,11 +107,13 @@ namespace ChocolateDeliveryVS.Services
                 List<Claim> claims = new List<Claim>();
                 //Mozemo dodati Claimove u token, oni ce biti vidljivi u tokenu i mozemo ih koristiti za autorizaciju
                 if (user.Role== "ADMIN")
-                    claims.Add(new Claim(ClaimTypes.Role, "ADMIN")); //Add user type to claim
+                    claims.Add(new Claim("role", "ADMIN")); //Add user type to claim
                 if (user.Role == "CUSTOMER")
-                    claims.Add(new Claim(ClaimTypes.Role, "CUSTOMER")); //Add user type to claim
+                    claims.Add(new Claim("role", "CUSTOMER")); //Add user type to claim
                 if (user.Role == "DELIVERER")
-                    claims.Add(new Claim(ClaimTypes.Role, "DELIVERER")); //Add user type to claim
+                    claims.Add(new Claim("role", "DELIVERER")); //Add user type to claim
+
+                claims.Add(new Claim("email", user.Email));
 
                 //Kreiramo kredencijale za potpisivanje tokena. Token mora biti potpisan privatnim kljucem
                 //kako bi se sprecile njegove neovlascene izmene

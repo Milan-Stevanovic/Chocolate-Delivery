@@ -16,6 +16,7 @@ a{
 
 .dashboard-item:hover{
     background-color: #484848;
+    transition: background-color 0.2s;
 }
 
 .dashboard-icon{

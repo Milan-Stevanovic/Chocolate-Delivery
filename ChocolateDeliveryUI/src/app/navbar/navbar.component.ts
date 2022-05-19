@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
@@ -7,12 +7,18 @@ import { Router } from "@angular/router";
     styleUrls: ['./navbar.component.css']
 })
 
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
     
-    constructor(private router: Router) {}
+    
+    constructor(private router: Router) 
+    {
+    }
 
-    ngOnInit(): void {}
-    
+
+    ngOnInit(): void 
+    {
+    }
+
     UserLogout() {
         localStorage.removeItem('token');
         this.router.navigate(['/entry']);
