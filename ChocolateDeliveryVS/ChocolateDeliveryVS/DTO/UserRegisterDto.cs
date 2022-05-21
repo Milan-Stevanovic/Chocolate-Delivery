@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ChocolateDeliveryVS.DTO
 {
-    public class UserDto
+    public class UserRegisterDto
     {
         public long Id { get; set; }
         public string Username { get; set; }

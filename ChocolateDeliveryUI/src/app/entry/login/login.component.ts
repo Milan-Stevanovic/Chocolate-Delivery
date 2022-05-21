@@ -17,7 +17,7 @@ import { UserService } from "src/app/shared/services/user.service";
 export class LoginComponent implements OnInit{
 
     
-    constructor(private service: UserService, private router: Router, private matDialog: MatDialog) { }
+    constructor(private userService: UserService, private router: Router, private matDialog: MatDialog) { }
     
     ngOnInit(): void 
     {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit{
             login.email = this.email.value;
             login.password = this.password.value;
             
-            this.service.login(login).subscribe(
+            this.userService.login(login).subscribe(
                 (data: Token) => 
                 {
                     localStorage.setItem('token', data.token);

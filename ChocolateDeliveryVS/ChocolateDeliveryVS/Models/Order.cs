@@ -9,8 +9,9 @@ namespace ChocolateDeliveryVS.Models
 
     public class Order
     {
-        public int CustomerId { get; set; }
         public int Id { get; set; }
+        public int CustomerId { get; set; }
+        public int DelivererId { get; set; }
         public OrderState OrderState { get; set; }
         public string Address { get; set; }
         public string Comment { get; set; }

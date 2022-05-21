@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Delivery Users Verification</h1>
+            <hr/>
+        </div>
+    </div>
+
+    <div class="row header">
+        <!--
+            <div class="col">
+                Id
+            </div>
+        -->
+
+        <div class="col">
+            Username
+        </div>
+
+        <div class="col">
+            Email
+        </div>
+
+        <div class="col">
+            Full Name
+        </div>
+
+        <div class="col">
+            Role
+        </div>
+
+        <div class="col">
+            Verified
+        </div>
+
+        <div class="col">
+            Verify
+        </div>
+    </div>
+
+    <div *ngFor="let user of users">
+        <app-userContainer [userData] = "user"></app-userContainer>
+    </div>
+
+</div>

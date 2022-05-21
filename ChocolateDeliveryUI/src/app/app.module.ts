@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboars.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './dashboardElements/profile/profile.component';
 import { LoginComponent } from './entry/login/login.component';
 import { RegisterComponent } from './entry/register/register.component';
 import { EntryComponent } from './entry/entry.component';
@@ -15,6 +15,9 @@ import { UserService } from './shared/services/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MessageDialogComponent } from './dialogs/messageDialog/messageDialog.component';
+import { VerificationComponent } from './dashboardElements/verification/verification.component';
+import { UserContainerComponent } from './dashboardElements/verification/userContainer/userContainer.component';
+import { AdminService } from './shared/services/admin.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,8 @@ import { MessageDialogComponent } from './dialogs/messageDialog/messageDialog.co
     NavbarComponent,
     DashboardComponent,
     ProfileComponent,
+    VerificationComponent,
+    UserContainerComponent,
     MessageDialogComponent,
   ],
   imports: [
@@ -37,7 +42,8 @@ import { MessageDialogComponent } from './dialogs/messageDialog/messageDialog.co
     MatDialogModule
   ],
   providers: [
-    UserService
+    UserService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

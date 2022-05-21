@@ -28,18 +28,18 @@ namespace ChocolateDeliveryVS.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] UserDto userDto)
+        public IActionResult Register([FromBody] UserRegisterDto userRegisterDto)
         {
-            if (_userService.Register(userDto))
+            if (_userService.Register(userRegisterDto))
                 return Ok();
             else
                 return Problem();
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] UserDto userDto)
+        public IActionResult Login([FromBody] UserLoginDto userLoginDto)
         {
-            TokenDto token = _userService.Login(userDto);
+            TokenDto token = _userService.Login(userLoginDto);
             if (token != null)
                 return Ok(token);
             else

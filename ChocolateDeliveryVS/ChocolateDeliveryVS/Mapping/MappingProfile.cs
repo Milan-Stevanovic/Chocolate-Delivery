@@ -12,7 +12,8 @@ namespace ChocolateDeliveryVS.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, UserRegisterDto>().ReverseMap();
+            CreateMap<User, UserLoginDto>().ReverseMap();
             CreateMap<User, UserDisplayDto>().ReverseMap();
         }
     }

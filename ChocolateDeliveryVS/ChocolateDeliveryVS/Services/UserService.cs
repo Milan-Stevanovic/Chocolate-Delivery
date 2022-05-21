@@ -33,7 +33,7 @@ namespace ChocolateDeliveryVS.Services
             return _mapper.Map<List<UserDisplayDto>>(_dbContext.Users.ToList());
         }
 
-        public bool Register(UserDto userDto)
+        public bool Register(UserRegisterDto userDto)
         {
             User user = _mapper.Map<User>(userDto);
             bool valid = true;
@@ -87,7 +87,7 @@ namespace ChocolateDeliveryVS.Services
             }
         }
 
-        public TokenDto Login(UserDto dto)
+        public TokenDto Login(UserLoginDto dto)
         {
             User user = null;
             try

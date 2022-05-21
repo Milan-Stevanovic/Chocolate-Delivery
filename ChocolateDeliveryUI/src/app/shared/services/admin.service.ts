@@ -11,20 +11,12 @@ import { UserDisplay } from '../models/userDisplay.model';
   providedIn: 'root'
 })
 
-export class UserService {
+export class AdminService {
 
     constructor( private http: HttpClient) { }
 
-    register(registration: Registration): Observable<Object> {
-      return this.http.post<Object>(environment.serverURL + '/api/users/register', registration);
-    }
-
-    login(login: Login): Observable<Token> {
-      return this.http.post<Token>(environment.serverURL + '/api/users/login', login);
-    }
-
-    getAllUsers(): Observable<UserDisplay[]>{
-      return this.http.get<UserDisplay[]>(environment.serverURL + '/api/users/getAllUsers');
+    verifyUserById(id: number): Observable<Object> {
+      return this.http.post<Object>(environment.serverURL + '/api/admin/verifyUserById', id);
     }
 }
   

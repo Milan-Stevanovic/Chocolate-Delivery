@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 
 export class NavbarComponent implements OnInit {
     
+    loggedIn: boolean = false;
     
     constructor(private router: Router) 
     {
@@ -17,10 +18,20 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit(): void 
     {
+        let token = localStorage.getItem('token')
+        if(token != null)
+        {
+            this.loggedIn = true
+        }
+        else
+        {
+            this.loggedIn = false;
+        }
     }
 
     UserLogout() {
         localStorage.removeItem('token');
         this.router.navigate(['/entry']);
+        this.loggedIn = false;
     }
 }

@@ -1,0 +1,31 @@
+<div class="row">
+    <!-- No need for this (admin does not need to know Id), will use id later...
+        <div class="col">
+            <p>{{ userData.id }}</p>
+        </div>
+    -->
+
+    <div class="col">
+        <p>{{ userData.username }}</p>
+    </div>
+
+    <div class="col">
+        <p>{{ userData.email }}</p>
+    </div>
+
+    <div class="col">
+        <p>{{ userData.firstName + " " + userData.lastName }} </p>
+    </div>
+
+    <div class="col">
+        <p>{{ userData.role }}</p>
+    </div>
+
+    <div class="col">
+        <p>{{ userData.verified }}</p>
+    </div>
+
+    <div class="col">
+        <button *ngIf="userData.role == 'DELIVERER' && !userData.verified" class="btn btn-light verify-button" (click)="VerifyUser(userData.id)">Verify</button>
+    </div>
+</div>

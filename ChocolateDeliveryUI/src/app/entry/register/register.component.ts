@@ -15,7 +15,7 @@ import { UserService } from "src/app/shared/services/user.service";
 
 export class RegisterComponent implements OnInit{
     
-    constructor(private service: UserService, private router:Router, private matDialog: MatDialog) { }
+    constructor(private userService: UserService, private router:Router, private matDialog: MatDialog) { }
 
     ngOnInit(): void {}
     
@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit{
             registration.role = this.role.value;
             registration.profilePicture = this.profilePicture.value;
 
-            this.service.register(registration).subscribe(
+            this.userService.register(registration).subscribe(
                 data => 
                 {
                     let message: Message = new Message();

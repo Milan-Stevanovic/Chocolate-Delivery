@@ -10,7 +10,7 @@
     
     
     
-    <div class="log-out" (click)="UserLogout()">
+    <div *ngIf="loggedIn" class="log-out" (click)="UserLogout()">
         <div class="navbar-item" style="float: right;">
             Log Out
         </div>
