@@ -27,5 +27,14 @@ namespace ChocolateDeliveryVS.Controllers
             else
                 return Problem();
         }
+
+        [HttpPost("rejectUserById")]
+        public IActionResult RejectUserById([FromBody] int id)
+        {
+            if (_adminService.RejectUserById(id))
+                return Ok();
+            else
+                return Problem();
+        }
     }
 }

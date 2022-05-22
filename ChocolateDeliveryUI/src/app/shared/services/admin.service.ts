@@ -18,5 +18,9 @@ export class AdminService {
     verifyUserById(id: number): Observable<Object> {
       return this.http.post<Object>(environment.serverURL + '/api/admin/verifyUserById', id);
     }
+
+    rejectUserById(id: number): Observable<Object> {
+      return this.http.post<Object>(environment.serverURL + '/api/admin/rejectUserById', id);
+    }
 }
   

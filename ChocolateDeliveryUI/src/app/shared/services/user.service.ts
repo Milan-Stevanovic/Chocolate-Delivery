@@ -6,6 +6,7 @@ import { Registration } from '../models/registration.model';
 import { Login } from '../models/login.model';
 import { Token } from '../models/token.model';
 import { UserDisplay } from '../models/userDisplay.model';
+import { UserProfile } from '../models/userProfile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class UserService {
 
     login(login: Login): Observable<Token> {
       return this.http.post<Token>(environment.serverURL + '/api/users/login', login);
+    }
+
+    getUserById(id: number): Observable<UserProfile> {
+      return this.http.get<UserProfile>(environment.serverURL + `/api/users/getUserById/${id}`);
     }
 
     getAllUsers(): Observable<UserDisplay[]>{

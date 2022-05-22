@@ -8,5 +8,6 @@ namespace ChocolateDeliveryVS.Interfaces
     public interface IAdminService
     {
         bool VerifyUserById(int id);
+        bool RejectUserById(int id);
     }
 }

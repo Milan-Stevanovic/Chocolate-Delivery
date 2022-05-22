@@ -21,6 +21,16 @@ namespace ChocolateDeliveryVS.Controllers
             _userService = userService;
         }
 
+        [HttpGet("getUserById/{id}")]
+        public IActionResult GetUserById(int id)
+        {
+            UserProfileDto user = _userService.GetUserById(id);
+            if (user != null)
+                return Ok(user);
+            else
+                return Problem();
+        }
+
         [HttpGet("getAllUsers")]
         public IActionResult GetAllUsers()
         {

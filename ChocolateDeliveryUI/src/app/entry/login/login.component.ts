@@ -53,10 +53,7 @@ export class LoginComponent implements OnInit{
                     let message: Message = new Message();
                     message.title = "Successfully logged in";
                     message.messageText = "Welcome!"
-                    this.matDialog.open(MessageDialogComponent,
-                        {
-                            data: message
-                        })
+                    this.matDialog.open(MessageDialogComponent, { data: message })
 
                     // let decodedToken = JSON.parse(atob(data.token.split('.')[1]));
                 },
@@ -65,10 +62,7 @@ export class LoginComponent implements OnInit{
                     let message: Message = new Message();
                     message.title = "Authentication Error";
                     message.messageText = "Please check if you entered your info correctly"
-                    this.matDialog.open(MessageDialogComponent,
-                        {
-                            data: message
-                        })
+                    this.matDialog.open(MessageDialogComponent, { data: message })
                 }
             );
         }
@@ -77,10 +71,7 @@ export class LoginComponent implements OnInit{
             let message: Message = new Message();
             message.title = "Wrong Email or Password";
             message.messageText = "Please check if you entered your info correctly"
-            this.matDialog.open(MessageDialogComponent,
-                {
-                    data: message
-                })
+            this.matDialog.open(MessageDialogComponent, { data: message })
         }
     }
 }

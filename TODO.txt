@@ -1,2 +1,6 @@
 - Send Email Notification when Admin verify user
-...
+
+- Upload image to server
+- Show Profile image
+
+- user profile edit

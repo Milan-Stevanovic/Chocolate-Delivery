@@ -113,7 +113,9 @@ namespace ChocolateDeliveryVS.Services
                 if (user.Role == "DELIVERER")
                     claims.Add(new Claim("role", "DELIVERER")); //Add user type to claim
 
+                claims.Add(new Claim("id", user.Id.ToString()));
                 claims.Add(new Claim("email", user.Email));
+                claims.Add(new Claim("username", user.Username));
 
                 //Kreiramo kredencijale za potpisivanje tokena. Token mora biti potpisan privatnim kljucem
                 //kako bi se sprecile njegove neovlascene izmene
@@ -132,6 +134,24 @@ namespace ChocolateDeliveryVS.Services
             {
                 return null;
             }
+        }
+
+        public UserProfileDto GetUserById(int id)
+        {
+            User user = null;
+            try
+            {
+                user = _dbContext.Users.First(x => x.Id == id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            if (user == null)
+                return null;
+
+            return _mapper.Map<UserProfileDto>(user);
         }
     }
 }

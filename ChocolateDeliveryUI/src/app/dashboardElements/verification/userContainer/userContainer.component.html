@@ -26,6 +26,7 @@
     </div>
 
     <div class="col">
-        <button *ngIf="userData.role == 'DELIVERER' && !userData.verified" class="btn btn-light verify-button" (click)="VerifyUser(userData.id)">Verify</button>
+        <button *ngIf="userData.role == 'DELIVERER'" class="btn btn-light verify-button" (click)="VerifyUser(userData.id)">Verify</button>
+        <button *ngIf="userData.role == 'DELIVERER'" class="btn btn-light verify-button" style="margin-left: 5px;" (click)="RejectUser(userData.id)">Reject</button>
     </div>
 </div>

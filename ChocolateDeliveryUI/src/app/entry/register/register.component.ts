@@ -69,20 +69,14 @@ export class RegisterComponent implements OnInit{
                     let message: Message = new Message();
                     message.title = "Account successfully created";
                     message.messageText = "Please log in to continue!"
-                    this.matDialog.open(MessageDialogComponent,
-                        {
-                            data: message
-                        })
+                    this.matDialog.open(MessageDialogComponent, { data: message })
                 },
                 error => 
                 {
                     let message: Message = new Message();
                     message.title = "Error Occured";
                     message.messageText = "Something went wrong"
-                    this.matDialog.open(MessageDialogComponent,
-                        {
-                            data: message
-                        })
+                    this.matDialog.open(MessageDialogComponent, { data: message })
                 }
             );
         }
@@ -91,10 +85,7 @@ export class RegisterComponent implements OnInit{
             let message: Message = new Message();
             message.title = "Form Invalid";
             message.messageText = "Please check if fields are correctly filled"
-            this.matDialog.open(MessageDialogComponent,
-                {
-                    data: message
-                })
+            this.matDialog.open(MessageDialogComponent, { data: message })
         }
     }
     

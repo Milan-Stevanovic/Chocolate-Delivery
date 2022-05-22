@@ -22,6 +22,7 @@ export class UserContainerComponent implements OnInit{
         this.adminService.verifyUserById(id).subscribe(
             data =>
             {
+                // User Successfully Verified
                 window.location.reload();
             },
             error =>
@@ -29,10 +30,25 @@ export class UserContainerComponent implements OnInit{
                 let message: Message = new Message();
                 message.title = "Error";
                 message.messageText = "Could not verify user!"
-                this.matDialog.open(MessageDialogComponent,
-                    {
-                        data: message
-                    })
+                this.matDialog.open(MessageDialogComponent, { data: message })
+            }
+          )
+    }
+
+    RejectUser(id: any)
+    {
+        this.adminService.rejectUserById(id).subscribe(
+            data =>
+            {
+                // User Rejected
+                window.location.reload();
+            },
+            error =>
+            {
+                let message: Message = new Message();
+                message.title = "Error";
+                message.messageText = "Could not reject user!"
+                this.matDialog.open(MessageDialogComponent, { data: message })
             }
           )
     }

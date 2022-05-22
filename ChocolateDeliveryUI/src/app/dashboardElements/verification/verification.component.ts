@@ -26,10 +26,7 @@ export class VerificationComponent implements OnInit{
         let message: Message = new Message();
         message.title = "Fetch Error";
         message.messageText = "Could not fetch users data from server!"
-        this.matDialog.open(MessageDialogComponent,
-            {
-                data: message
-            })
+        this.matDialog.open(MessageDialogComponent, { data: message })
       }
     )
   }

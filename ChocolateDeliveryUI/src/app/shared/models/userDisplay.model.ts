@@ -1,4 +1,5 @@
-export class UserDisplay{
+export class UserDisplay
+{
     id: string = "";
     username: string = "";
     email: string = "";
