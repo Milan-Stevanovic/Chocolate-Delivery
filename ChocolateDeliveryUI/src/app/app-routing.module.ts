@@ -7,7 +7,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { AdminAuthGuard } from './auth/admin.guard';
 import { CustomerAuthGuard } from './auth/customer.guard';
 import { DelivererAuthGuard } from './auth/deliverer.guard';
-import { VerificationComponent } from './dashboardElements/verification/verification.component';
+import { VerificationComponent } from './dashboardElements/adminPages/verification/verification.component';
+import { NewCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/newCurrentOrder.component';
 
 const routes: Routes = [
   // every user
@@ -15,8 +16,9 @@ const routes: Routes = [
   { path: 'entry', component: EntryComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard] },
-
+  
   // customer
+  { path: 'newCurrentOrder', component: NewCurrentOrderComponent, canActivate:[AuthGuard]},
 
   // deliverer
 

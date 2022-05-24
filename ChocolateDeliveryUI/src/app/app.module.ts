@@ -15,9 +15,11 @@ import { UserService } from './shared/services/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MessageDialogComponent } from './dialogs/messageDialog/messageDialog.component';
-import { VerificationComponent } from './dashboardElements/verification/verification.component';
-import { UserContainerComponent } from './dashboardElements/verification/userContainer/userContainer.component';
+import { VerificationComponent } from './dashboardElements/adminPages/verification/verification.component';
+import { UserContainerComponent } from './dashboardElements/adminPages/verification/userContainer/userContainer.component';
 import { AdminService } from './shared/services/admin.service';
+import { NewCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/newCurrentOrder.component';
+import { ProductContainerComponent } from './dashboardElements/customerPages/newCurrentOrder/productContainer/productContainer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { AdminService } from './shared/services/admin.service';
     VerificationComponent,
     UserContainerComponent,
     MessageDialogComponent,
+    NewCurrentOrderComponent,
+    ProductContainerComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,10 @@
 - Upload image to server
 - Show Profile image
 
-- user profile edit
+- Upload Product image to server
+- Show Product image 
+
+- user profile edit (save changes)
 
 - TimerIdea (Thread running on server with unique user id starting from random number of seconds counting to zero,
   OnPageReload - get number of seconds left on running thread from threadpool and display it on page)

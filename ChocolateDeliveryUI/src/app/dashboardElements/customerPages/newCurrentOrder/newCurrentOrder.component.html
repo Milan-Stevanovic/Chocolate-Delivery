@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="confirm-order-container">
+                <h3>Confirm Your Order Here!</h3>
+                
+                <!-- TODO: add form here -->
+            </div>
+        </div>
+    
+        <div class="col-9">
+            <div class="row">
+                <div class="col">
+                    <h1>Create your order now!</h1>
+                    <hr/>
+                </div>
+            </div>
+        
+            <div class="row">
+                
+                <div class="products-container">
+                    <div *ngFor="let product of products">
+                        <app-productContainer [product]="product"></app-productContainer>
+                    </div>
+        
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</div>

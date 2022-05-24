@@ -1,0 +1,26 @@
+<div class="product-holder">
+    <h2>{{ product.name }}</h2>
+    <p> {{ product.ingredients }}</p>
+    <img src="/assets/products/{{ product.picture }}" class="product-image"/><br/><br/>
+    <p>Price: {{ product.price }} RSD</p>
+    
+    <form>
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <label style="font-size: 18px;">Amount: </label>
+                </td>
+                <td>
+                    <input type="number" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-light form-control" style="width:100%; margin-top: 5px;">Add</button>
+                </td>
+            </tr>
+        </table>
+           
+    </form>
+
+</div>

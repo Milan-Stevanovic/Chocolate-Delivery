@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { UserProfile } from 'src/app/shared/models/userProfile.model';
-import { Portal } from '@angular/cdk/portal';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Message } from 'src/app/shared/models/message.model';
 import { MessageDialogComponent } from 'src/app/dialogs/messageDialog/messageDialog.component';
