@@ -156,7 +156,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="file" class="form-control" formControlName="profilePicture"/>
+                <input type="file" class="form-control" formControlName="profilePicture" (change)="getfile($event)"/>
 
                 <div *ngIf="profilePicture.invalid && (profilePicture.dirty || profilePicture.touched)" class="alert alert-danger">
                     <div *ngIf="profilePicture.errors?.['required']">

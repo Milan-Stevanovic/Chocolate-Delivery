@@ -16,3 +16,8 @@
     position: fixed;
     text-align: center;
 }
+
+.products{
+    overflow: scroll;
+    max-height: 300px;
+}

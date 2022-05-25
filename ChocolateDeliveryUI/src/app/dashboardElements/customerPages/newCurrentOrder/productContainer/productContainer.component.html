@@ -4,14 +4,15 @@
     <img src="/assets/products/{{ product.picture }}" class="product-image"/><br/><br/>
     <p>Price: {{ product.price }} RSD</p>
     
-    <form>
+    <form [formGroup]="addProductForm" (ngSubmit)="AddProduct()">
         <table style="width:100%;">
             <tr>
                 <td>
                     <label style="font-size: 18px;">Amount: </label>
                 </td>
                 <td>
-                    <input type="number" class="form-control">
+                    <input type="hidden" class="form-control" formControlName="productId">
+                    <input type="number" class="form-control" formControlName="amount">
                 </td>
             </tr>
             <tr>

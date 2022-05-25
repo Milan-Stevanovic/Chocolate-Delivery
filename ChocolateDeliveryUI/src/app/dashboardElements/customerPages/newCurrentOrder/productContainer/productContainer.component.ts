@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/shared/models/product.model';
+
 @Component({
   selector: 'app-productContainer',
   templateUrl: './productContainer.component.html',
@@ -8,11 +10,22 @@ import { Product } from 'src/app/shared/models/product.model';
 export class ProductContainerComponent implements OnInit{
 
     @Input() product: Product = new Product();
+    @Output() addProductEmitter = new EventEmitter<{ order_product: Product, order_amount: number }>();
 
-    constructor()
-    {
-    }
+    addProductForm = new FormGroup({
+      productId : new FormControl(""),
+      amount : new FormControl("", Validators.required)
+    })
+
+    constructor() {}
 
     ngOnInit(): void {}
-  
+    
+    AddProduct()
+    {
+      let order_product = this.product;
+      let order_amount = this.addProductForm.controls['amount'].value;
+
+      this.addProductEmitter.emit({order_product, order_amount})
+    }
 }

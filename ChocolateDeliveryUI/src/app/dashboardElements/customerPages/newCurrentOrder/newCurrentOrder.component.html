@@ -5,7 +5,15 @@
         <div class="col-3">
             <div class="confirm-order-container">
                 <h3>Confirm Your Order Here!</h3>
-                
+                    <div class="products">
+                        <div *ngFor="let product of order.products">
+                            {{ product.name }} {{ product.price }} RSD
+                        </div>
+                    </div>
+
+                    <div>
+                        Total price = {{ order.price }} RSD
+                    </div>
                 <!-- TODO: add form here -->
             </div>
         </div>
@@ -22,7 +30,7 @@
                 
                 <div class="products-container">
                     <div *ngFor="let product of products">
-                        <app-productContainer [product]="product"></app-productContainer>
+                        <app-productContainer (addProductEmitter)="AddProductToOrder($event)" [product]="product"></app-productContainer>
                     </div>
         
                 </div>

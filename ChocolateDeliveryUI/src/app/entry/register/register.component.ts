@@ -35,6 +35,15 @@ export class RegisterComponent implements OnInit{
     })
 
 
+    public file: any;
+
+    getfile(e: any)
+    {
+        const fileList: FileList = e.target.files;
+        this.file = fileList[0];
+        console.log(this.file);
+    }
+
     get username() { return this.registerForm.get('username') as FormControl; } 
     get email() { return this.registerForm.get('email') as FormControl; } 
     get password() { return this.registerForm.get('password') as FormControl; } 

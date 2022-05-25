@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from 'src/app/shared/models/order.model';
 import { Product } from 'src/app/shared/models/product.model';
 
 @Component({
@@ -19,7 +20,7 @@ export class NewCurrentOrderComponent implements OnInit{
         { id : 8, name:"GGG", price:80, ingredients:"ggg", picture : "strawberry_orange_1.jpg"},
     ]
 
-    
+    order: Order = new Order()
 
     constructor()
     {
@@ -27,4 +28,12 @@ export class NewCurrentOrderComponent implements OnInit{
 
     ngOnInit(): void {}
 
+
+    AddProductToOrder(productToOrder : {order_product: Product, order_amount: number})
+    {
+      for (let i = 0; i < productToOrder.order_amount; i++) {
+        this.order.products.push(productToOrder.order_product);
+        this.order.price += productToOrder.order_product.price;
+      }
+    }
 }
