@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/shared/models/product.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-productContainer',
@@ -14,7 +15,7 @@ export class ProductContainerComponent implements OnInit{
 
     addProductForm = new FormGroup({
       productId : new FormControl(""),
-      amount : new FormControl("", Validators.required)
+      amount : new FormControl("", [Validators.required, Validators.max(100)])
     })
 
     constructor() {}
@@ -23,9 +24,16 @@ export class ProductContainerComponent implements OnInit{
     
     AddProduct()
     {
-      let order_product = this.product;
-      let order_amount = this.addProductForm.controls['amount'].value;
+      if(this.addProductForm.valid)
+      {
+        let order_product = this.product;
+        let order_amount = this.addProductForm.controls['amount'].value;
+  
+        this.addProductEmitter.emit({order_product, order_amount})
+      }
+    }
 
-      this.addProductEmitter.emit({order_product, order_amount})
+    public createImgPath = (serverPath: string) => { 
+      return environment.serverURL + '/' + serverPath; 
     }
 }

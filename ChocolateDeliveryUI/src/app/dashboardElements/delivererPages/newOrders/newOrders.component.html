@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Delivery Users Verification</h1>
+            <hr/>
+        </div>
+    </div>
+
+    <div class="row header">
+        <!--
+            <div class="col">
+                Id
+            </div>
+        -->
+
+        <div class="col">
+            Order ID
+        </div>
+
+        <div class="col">
+            Address
+        </div>
+
+        <div class="col">
+            Comment
+        </div>
+
+        <div class="col">
+            Total Price
+        </div>
+
+        <div class="col">
+            Accept Order
+        </div>
+    </div>
+
+    <div *ngFor="let order of orders">
+        <app-orderContainer [orderData] = "order"></app-orderContainer>
+    </div>
+
+</div>

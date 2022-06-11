@@ -12,7 +12,7 @@
 
             <div class="image-holder">
                 <label for="file-input">
-                    <img src="/assets/icons/profile-icon.png" style="max-height: 200px;"/>
+                    <img [src]="createImgPath(user.profilePicture)" alt="profile picture" style="max-height: 200px;"/>
                 </label>
                 <input id="file-input" type="file" class="form-control" formControlName="profilePicture" (change)="TestPicture()"/>
 

@@ -20,11 +20,17 @@ import { UserContainerComponent } from './dashboardElements/adminPages/verificat
 import { AdminService } from './shared/services/admin.service';
 import { NewCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/newCurrentOrder.component';
 import { ProductContainerComponent } from './dashboardElements/customerPages/newCurrentOrder/productContainer/productContainer.component';
+import { CustomerService } from './shared/services/customer.service';
+import { DelivererService } from './shared/services/deliverer.service';
+import { NewOrdersComponent } from './dashboardElements/delivererPages/newOrders/newOrders.component';
+import { OrderContainerComponent } from './dashboardElements/delivererPages/newOrders/orderContainer/orderContainer.component';
+import { UploadComponent } from './uploadComponent/upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
+    UploadComponent,
     LoginComponent,
     EntryComponent,
     NavbarComponent,
@@ -35,6 +41,8 @@ import { ProductContainerComponent } from './dashboardElements/customerPages/new
     MessageDialogComponent,
     NewCurrentOrderComponent,
     ProductContainerComponent,
+    NewOrdersComponent,
+    OrderContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +55,9 @@ import { ProductContainerComponent } from './dashboardElements/customerPages/new
   ],
   providers: [
     UserService,
-    AdminService
+    AdminService,
+    CustomerService,
+    DelivererService
   ],
   bootstrap: [AppComponent]
 })

@@ -40,7 +40,8 @@ namespace ChocolateDeliveryVS.Services
 
             user.Verified = false;
 
-            // TODO: Send Email Notification to user.Email
+            SendMail(user.Email, "Chocolate Delivery Verification", "You are not verified! :(");
+
             _dbContext.SaveChanges();
             return true;
         }
@@ -62,9 +63,35 @@ namespace ChocolateDeliveryVS.Services
 
             user.Verified = true;
 
-            // TODO: Send Email Notification to user.Email
+            SendMail(user.Email, "Chocolate Delivery Verification", "You are successfully verified!");
+
             _dbContext.SaveChanges();
             return true;
+        }
+
+        public void SendMail(string toEmail, string subject, string body)
+        {
+            try
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                message.From = new MailAddress("milanscontact908@gmail.com");
+                message.To.Add(new MailAddress(toEmail));
+                message.Subject = subject;
+                message.IsBodyHtml = true; //to make message body as html  
+                message.Body = $"<h1>{body}</h1>";
+                smtp.Port = 587;
+                smtp.Host = "smtp.gmail.com"; //for gmail host  
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("milanscontact908@gmail.com", "ncswvltmpdnijesg");
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("[ERROR] Failed to send email. " + e.Message);
+            }
         }
     }
 }

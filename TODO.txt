@@ -1,12 +1,10 @@
-- Send Email Notification when Admin verify user
-
-- Upload image to server
-- Show Profile image
-
 - Upload Product image to server
-- Show Product image 
+- Show Product image
 
-- user profile edit (save changes)
+- Fix total price on newCurrentPage
+
+- User Profile Edit (save changes) (cannot change email and username => unique)
 
 - TimerIdea (Thread running on server with unique user id starting from random number of seconds counting to zero,
   OnPageReload - get number of seconds left on running thread from threadpool and display it on page)
+- Deliverer accepts order, Timer Starts

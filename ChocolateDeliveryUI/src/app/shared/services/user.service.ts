@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpEvent } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Registration } from '../models/registration.model';
@@ -30,6 +30,10 @@ export class UserService {
 
     getAllUsers(): Observable<UserDisplay[]>{
       return this.http.get<UserDisplay[]>(environment.serverURL + '/api/users/getAllUsers');
+    }
+
+    upload(formData : any, progress :any): Observable<HttpEvent<Object>>{
+      return this.http.post<HttpEvent<Object>>(environment.serverURL + '/api/users/upload', formData, {reportProgress: true, observe: 'events'})
     }
 }
   

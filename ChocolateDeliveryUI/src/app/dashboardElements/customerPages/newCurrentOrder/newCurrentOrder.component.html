@@ -4,17 +4,26 @@
     <div class="row">
         <div class="col-3">
             <div class="confirm-order-container">
-                <h3>Confirm Your Order Here!</h3>
+                <h3>Confirm Your Order</h3>
                     <div class="products">
-                        <div *ngFor="let product of order.products">
-                            {{ product.name }} {{ product.price }} RSD
+                        <div *ngFor="let product of order.orderProducts">
+                            {{ product.productId }} {{ product.quantity }} RSD
                         </div>
                     </div>
 
                     <div>
                         Total price = {{ order.price }} RSD
                     </div>
-                <!-- TODO: add form here -->
+
+                    <!-- TODO: add form here -->
+                    <form [formGroup]="confirmOrderForm" (ngSubmit)="ConfirmOrder()">
+                        Address
+                        <input type="text" class="form-control" formControlName="address">
+                        Comment
+                        <textarea style="max-height: 150px;" class="form-control" formControlName="comment"></textarea><br/>
+
+                        <input type="submit" value="Confirm Order" class="btn btn-light form-control">
+                    </form>
             </div>
         </div>
     

@@ -1,7 +1,7 @@
 <div class="product-holder">
     <h2>{{ product.name }}</h2>
-    <p> {{ product.ingredients }}</p>
-    <img src="/assets/products/{{ product.picture }}" class="product-image"/><br/><br/>
+    <p style="height: 40px;"> {{ product.ingredients }}</p>
+    <img [src]="createImgPath(product.picture)" class="product-image"/><br/><br/>
     <p>Price: {{ product.price }} RSD</p>
     
     <form [formGroup]="addProductForm" (ngSubmit)="AddProduct()">
@@ -12,7 +12,7 @@
                 </td>
                 <td>
                     <input type="hidden" class="form-control" formControlName="productId">
-                    <input type="number" class="form-control" formControlName="amount">
+                    <input type="number" class="form-control" formControlName="amount" max="100">
                 </td>
             </tr>
             <tr>

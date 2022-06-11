@@ -6,6 +6,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { Message } from 'src/app/shared/models/message.model';
 import { MessageDialogComponent } from 'src/app/dialogs/messageDialog/messageDialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -74,5 +75,9 @@ export class ProfileComponent implements OnInit{
 
   TestPicture(){
     console.log(this.profileEditForm.controls['profilePicture'].value);
+  }
+
+  public createImgPath = (serverPath: string) => { 
+    return environment.serverURL + '/' + serverPath; 
   }
 }

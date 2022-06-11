@@ -1,6 +1,13 @@
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageDialogComponent } from 'src/app/dialogs/messageDialog/messageDialog.component';
+import { Message } from 'src/app/shared/models/message.model';
 import { Order } from 'src/app/shared/models/order.model';
+import { OrderProduct } from 'src/app/shared/models/orderProduct';
 import { Product } from 'src/app/shared/models/product.model';
+import { CustomerService } from 'src/app/shared/services/customer.service';
 
 @Component({
   selector: 'app-newCurrentOrder',
@@ -8,32 +15,107 @@ import { Product } from 'src/app/shared/models/product.model';
   styleUrls: ['./newCurrentOrder.component.css']
 })
 export class NewCurrentOrderComponent implements OnInit{
+  
+  products: Product[] = []
+  
+  constructor(private customerService: CustomerService, private matDialog: MatDialog)
+  {
+    this.customerService.getAllProducts().subscribe(
+      (data: Product[]) =>
+      {
+        this.products = data;
+      },
+      error =>
+      {
+        let message: Message = new Message();
+        message.title = "Fetch Error";
+        message.messageText = "Could not fetch products data from server!"
+        this.matDialog.open(MessageDialogComponent, { data: message })
+      }
+    )
+  }
 
-    products: Product[] = 
-    [
-        { id : 2, name:"AAA", price:20, ingredients:"aaa", picture : "berries_cheesecake_1.jpg"},
-        { id : 3, name:"BBB", price:30, ingredients:"bbb", picture : "classic_truffle_1.jpg"},
-        { id : 4, name:"CCC", price:40, ingredients:"ccc", picture : "coconut_honey_1.jpg"},
-        { id : 5, name:"DDD", price:50, ingredients:"ddd", picture : "hazelnut_espresso_1.jpg"},
-        { id : 6, name:"EEE", price:60, ingredients:"eee", picture : "peppermint_cream_1.jpg"},
-        { id : 7, name:"FFF", price:70, ingredients:"fff", picture : "salted_caramel_1.jpg"},
-        { id : 8, name:"GGG", price:80, ingredients:"ggg", picture : "strawberry_orange_1.jpg"},
-    ]
 
-    order: Order = new Order()
+  confirmOrderForm = new FormGroup({
+    address : new FormControl("", Validators.required),
+    comment : new FormControl("", )
+  })
 
-    constructor()
+  order: Order = new Order()
+
+
+  ngOnInit(): void {}
+
+
+  AddProductToOrder(productToOrder : {order_product: Product, order_amount: number})
+  {
+    for(let product of this.order.orderProducts)
     {
-    }
+      if(productToOrder.order_product.id == product.productId)
+      {
+        product.quantity = productToOrder.order_amount;
 
-    ngOnInit(): void {}
+        if(productToOrder.order_amount <= 0)
+        {
+          const index = this.order.orderProducts.indexOf(product);
 
-
-    AddProductToOrder(productToOrder : {order_product: Product, order_amount: number})
-    {
-      for (let i = 0; i < productToOrder.order_amount; i++) {
-        this.order.products.push(productToOrder.order_product);
-        this.order.price += productToOrder.order_product.price;
+          if (index !== -1) 
+          {
+            this.order.orderProducts.splice(index, 1);
+          }
+        }
+        return;
       }
     }
+
+    if(productToOrder.order_amount <= 0)
+      return;
+
+    let orderProduct : OrderProduct = new OrderProduct();
+    orderProduct.orderId = -1;
+    orderProduct.productId = productToOrder.order_product.id;
+    orderProduct.product = productToOrder.order_product;
+    orderProduct.quantity = productToOrder.order_amount;
+
+    this.order.orderProducts.push(orderProduct);
+
+    for (let i = 0; i < productToOrder.order_amount; i++) {
+      this.order.price += productToOrder.order_product.price;
+    }
+  }
+
+  ConfirmOrder()
+  {
+    let token = localStorage.getItem('token');
+    if (token != null)
+    {
+        var decodedToken = JSON.parse(atob(token.split('.')[1]));
+    }
+    this.order.customerId = decodedToken.id;
+
+    if(this.confirmOrderForm.controls['address'].valid)
+    {
+      this.order.address = this.confirmOrderForm.controls['address'].value;
+    }
+
+    this.order.orderState = "PENDING";
+
+    this.customerService.confirmOrder(this.order).subscribe
+    (
+      data => 
+      {
+        let message: Message = new Message();
+        message.title = "Your order has been recorded!";
+        message.messageText = "Waiting for deliverer to pick up your order!"
+        this.matDialog.open(MessageDialogComponent, { data: message })
+      },
+      error => 
+      {
+        let message: Message = new Message();
+        message.title = "Error! You already ordered!";
+        message.messageText = "Please wait for your order to be delivered before you order again!"
+        this.matDialog.open(MessageDialogComponent, { data: message })
+      }
+    );
+  }
 }

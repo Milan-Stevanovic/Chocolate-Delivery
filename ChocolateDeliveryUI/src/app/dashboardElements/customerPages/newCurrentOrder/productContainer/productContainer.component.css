@@ -2,7 +2,7 @@
     background-color: rgb(63, 63, 63);
     border-radius: 5px;
     width:30%;
-    height: fit-content; 
+    height: fit-content;
     padding: 10px;
     float: left; 
     margin: 1.6%;
@@ -13,5 +13,4 @@
     width: 70%;
     height: auto;
     border-radius: 5px;
-    border: 2px solid rgb(165, 165, 165);
 }

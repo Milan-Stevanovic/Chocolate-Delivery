@@ -156,13 +156,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="file" class="form-control" formControlName="profilePicture" (change)="getfile($event)"/>
-
-                <div *ngIf="profilePicture.invalid && (profilePicture.dirty || profilePicture.touched)" class="alert alert-danger">
-                    <div *ngIf="profilePicture.errors?.['required']">
-                        Profile Picture is required.
-                    </div>
-                </div>
+                <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
             </td>
         </tr>
 

@@ -1,0 +1,13 @@
+.row{
+    background-color: #484848;
+    border-radius: 3px;
+    margin: 5px 0 5px 0;
+}
+
+.col p{
+    padding-top: 10px;
+}
+
+.col{
+    padding-top: 5px;
+}

@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col">
+        <p>{{ orderData.id }}</p>
+    </div>
+
+    <div class="col">
+        <p>{{ orderData.address }}</p>
+    </div>
+
+    <div class="col">
+        <p>{{ orderData.comment }} </p>
+    </div>
+
+    <div class="col">
+        <p>{{ orderData.price }}</p>
+    </div>
+
+    <div class="col">
+        <button *ngIf="orderData.orderState == 'PENDING'" class="btn btn-light verify-button" (click)="AcceptOrder(orderData.id)">Accept Order</button>
+    </div>
+
+</div>

@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit{
     ngOnInit(): void {}
     
     passwordInputText?: string = "";
+    response: {dbPath: ''} = {dbPath: ""};
 
     registerForm = new FormGroup({
         username : new FormControl("", Validators.required),
@@ -30,8 +31,7 @@ export class RegisterComponent implements OnInit{
         lastName : new FormControl("", [Validators.required]),
         dateOfBirth : new FormControl("", [Validators.required]),
         address : new FormControl("", [Validators.required]),
-        role: new FormControl("", [Validators.required]),
-        profilePicture : new FormControl("", [Validators.required])
+        role: new FormControl("", [Validators.required])
     })
 
 
@@ -53,8 +53,10 @@ export class RegisterComponent implements OnInit{
     get dateOfBirth() { return this.registerForm.get('dateOfBirth') as FormControl; } 
     get address() { return this.registerForm.get('address') as FormControl; } 
     get role() { return this.registerForm.get('role') as FormControl; } 
-    get profilePicture() { return this.registerForm.get('profilePicture') as FormControl; } 
     
+    uploadFinished = (event : any) => { 
+        this.response = event; 
+      }
     
     UserRegister()
     {
@@ -70,7 +72,7 @@ export class RegisterComponent implements OnInit{
             registration.dateOfBirth = this.dateOfBirth.value;
             registration.address = this.address.value;
             registration.role = this.role.value;
-            registration.profilePicture = this.profilePicture.value;
+            registration.profilePicture = this.response.dbPath;
 
             this.userService.register(registration).subscribe(
                 data => 
