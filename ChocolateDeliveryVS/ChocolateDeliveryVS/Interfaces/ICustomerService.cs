@@ -10,5 +10,6 @@ namespace ChocolateDeliveryVS.Interfaces
     {
         List<ProductDto> GetAllProducts();
         bool ConfirmOrder(OrderDto orderDto);
+        bool CheckIfOrderExists(int customerId);
     }
 }

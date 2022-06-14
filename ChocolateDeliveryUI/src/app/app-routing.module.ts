@@ -10,6 +10,7 @@ import { DelivererAuthGuard } from './auth/deliverer.guard';
 import { VerificationComponent } from './dashboardElements/adminPages/verification/verification.component';
 import { NewCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/newCurrentOrder.component';
 import { NewOrdersComponent } from './dashboardElements/delivererPages/newOrders/newOrders.component';
+import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages/customerCurrentOrder/customerCurrentOrder.component';
 
 const routes: Routes = [
   // every user
@@ -20,6 +21,7 @@ const routes: Routes = [
   
   // customer
   { path: 'newCurrentOrder', component: NewCurrentOrderComponent, canActivate:[AuthGuard]},
+  { path: 'customerCurrentOrder', component: CustomerCurrentOrderComponent, canActivate:[AuthGuard]},
   
   // deliverer
   { path: 'newOrders', component: NewOrdersComponent, canActivate:[AuthGuard]},

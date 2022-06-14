@@ -25,6 +25,7 @@ import { DelivererService } from './shared/services/deliverer.service';
 import { NewOrdersComponent } from './dashboardElements/delivererPages/newOrders/newOrders.component';
 import { OrderContainerComponent } from './dashboardElements/delivererPages/newOrders/orderContainer/orderContainer.component';
 import { UploadComponent } from './uploadComponent/upload.component';
+import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages/customerCurrentOrder/customerCurrentOrder.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UploadComponent } from './uploadComponent/upload.component';
     NewCurrentOrderComponent,
     ProductContainerComponent,
     NewOrdersComponent,
-    OrderContainerComponent
+    OrderContainerComponent,
+    CustomerCurrentOrderComponent
   ],
   imports: [
     BrowserModule,

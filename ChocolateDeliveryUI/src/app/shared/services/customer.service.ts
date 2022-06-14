@@ -20,5 +20,9 @@ export class CustomerService {
     confirmOrder(order: Order): Observable<Object> {
       return this.http.post<Object>(environment.serverURL + '/api/customer/confirmOrder', order);
     }
+
+    checkIfOrderExists(customerId: number): Observable<Object>{
+      return this.http.post<Object>(environment.serverURL + '/api/customer/checkIfOrderExists', customerId);
+    }
 }
   

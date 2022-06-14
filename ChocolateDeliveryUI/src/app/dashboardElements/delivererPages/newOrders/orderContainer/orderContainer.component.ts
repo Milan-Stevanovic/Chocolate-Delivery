@@ -22,6 +22,19 @@ export class OrderContainerComponent implements OnInit{
 
     AcceptOrder(id: any)
     {
-
+      this.delivererService.acceptOrder(id).subscribe(
+        data =>
+        {
+            // User Successfully Verified
+            window.location.reload();
+        },
+        error =>
+        {
+            let message: Message = new Message();
+            message.title = "Error";
+            message.messageText = "Could not accept order!"
+            this.matDialog.open(MessageDialogComponent, { data: message })
+        }
+      )
     }
 }

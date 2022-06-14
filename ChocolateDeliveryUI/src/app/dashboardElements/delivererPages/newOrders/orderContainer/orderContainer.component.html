@@ -12,11 +12,11 @@
     </div>
 
     <div class="col">
-        <p>{{ orderData.price }}</p>
+        <p>{{ orderData.price }} RSD</p>
     </div>
 
     <div class="col">
-        <button *ngIf="orderData.orderState == 'PENDING'" class="btn btn-light verify-button" (click)="AcceptOrder(orderData.id)">Accept Order</button>
+        <button class="btn btn-light verify-button" (click)="AcceptOrder(orderData.id)">Accept Order</button>
     </div>
 
 </div>

@@ -34,5 +34,15 @@ namespace ChocolateDeliveryVS.Controllers
             else
                 return Problem();
         }
+
+        [HttpPost("checkIfOrderExists")]
+        public IActionResult CheckIfOrderExists([FromBody] int customerId)
+        {
+            bool exists = _customerService.CheckIfOrderExists(customerId);
+            if (!exists)
+                return Ok(exists);
+            else
+                return Problem();
+        }
     }
 }

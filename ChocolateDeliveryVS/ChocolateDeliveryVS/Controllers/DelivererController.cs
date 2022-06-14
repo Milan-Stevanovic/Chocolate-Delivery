@@ -24,5 +24,11 @@ namespace ChocolateDeliveryVS.Controllers
         {
             return Ok(_delivererService.GetAllOrders());
         }
+
+        [HttpPost("acceptOrder")]
+        public IActionResult AcceptOrder([FromBody] int id)
+        {
+            return Ok(_delivererService.AcceptOrder(id));
+        }
     }
 }

@@ -7,7 +7,7 @@
                 <h3>Confirm Your Order</h3>
                     <div class="products">
                         <div *ngFor="let product of order.orderProducts">
-                            {{ product.productId }} {{ product.quantity }} RSD
+                            {{ product.product.name }} X {{ product.quantity }}
                         </div>
                     </div>
 

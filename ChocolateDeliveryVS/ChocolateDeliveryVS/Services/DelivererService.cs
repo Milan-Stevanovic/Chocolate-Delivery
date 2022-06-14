@@ -13,16 +13,32 @@ namespace ChocolateDeliveryVS.Services
     {
         private readonly IMapper _mapper;
         private readonly DeliveryDbContext _dbContext;
+        private readonly OrderData _orderData;
 
-        public DelivererService(IMapper mapper, DeliveryDbContext dbContext)
+        public DelivererService(IMapper mapper, DeliveryDbContext dbContext, OrderData orderData)
         {
             _mapper = mapper;
             _dbContext = dbContext;
+            _orderData = orderData;
         }
 
         public List<OrderDisplayDto> GetAllOrders()
         {
             return _mapper.Map<List<OrderDisplayDto>>(_dbContext.Orders.ToList());
+        }
+
+        public bool AcceptOrder(int orderId)
+        {
+            foreach (var order in _dbContext.Orders)
+            {
+                if(order.Id == orderId)
+                {
+                    order.OrderState = "IN_DELIVERY";
+                    _orderData.ordersDict[order.CustomerId].Start();
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

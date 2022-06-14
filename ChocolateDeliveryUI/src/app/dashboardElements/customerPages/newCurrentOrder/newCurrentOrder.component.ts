@@ -1,7 +1,8 @@
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { MessageDialogComponent } from 'src/app/dialogs/messageDialog/messageDialog.component';
 import { Message } from 'src/app/shared/models/message.model';
 import { Order } from 'src/app/shared/models/order.model';
@@ -14,11 +15,11 @@ import { CustomerService } from 'src/app/shared/services/customer.service';
   templateUrl: './newCurrentOrder.component.html',
   styleUrls: ['./newCurrentOrder.component.css']
 })
-export class NewCurrentOrderComponent implements OnInit{
+export class NewCurrentOrderComponent implements OnInit {
   
   products: Product[] = []
   
-  constructor(private customerService: CustomerService, private matDialog: MatDialog)
+  constructor(private customerService: CustomerService, private matDialog: MatDialog, private router: Router)
   {
     this.customerService.getAllProducts().subscribe(
       (data: Product[]) =>
@@ -35,7 +36,6 @@ export class NewCurrentOrderComponent implements OnInit{
     )
   }
 
-
   confirmOrderForm = new FormGroup({
     address : new FormControl("", Validators.required),
     comment : new FormControl("", )
@@ -44,7 +44,24 @@ export class NewCurrentOrderComponent implements OnInit{
   order: Order = new Order()
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let token = localStorage.getItem('token');
+    let customerId : number = -1;
+    if (token != null)
+    {
+        let decodedToken = JSON.parse(atob(token.split('.')[1]));
+        customerId = decodedToken.id;
+    }
+    console.log("check " + customerId)
+    this.customerService.checkIfOrderExists(+customerId).subscribe(
+      data => { console.log("good") },
+      error =>
+      {
+        console.log("error")
+        this.router.navigateByUrl('/customerCurrentOrder');
+      }
+    )
+  }
 
 
   AddProductToOrder(productToOrder : {order_product: Product, order_amount: number})
@@ -97,6 +114,8 @@ export class NewCurrentOrderComponent implements OnInit{
     {
       this.order.address = this.confirmOrderForm.controls['address'].value;
     }
+
+    this.order.comment = this.confirmOrderForm.controls['comment'].value;
 
     this.order.orderState = "PENDING";
 

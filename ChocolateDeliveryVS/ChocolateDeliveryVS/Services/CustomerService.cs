@@ -15,11 +15,13 @@ namespace ChocolateDeliveryVS.Services
     {
         private readonly IMapper _mapper;
         private readonly DeliveryDbContext _dbContext;
+        private readonly OrderData _orderData;
 
-        public CustomerService(IMapper mapper, DeliveryDbContext dbContext)
+        public CustomerService(IMapper mapper, DeliveryDbContext dbContext, OrderData orderData)
         {
             _mapper = mapper;
             _dbContext = dbContext;
+            _orderData = orderData;
         }
 
         public List<ProductDto> GetAllProducts()
@@ -30,6 +32,12 @@ namespace ChocolateDeliveryVS.Services
         public bool ConfirmOrder(OrderDto orderDto)
         {
             Order order = _mapper.Map<Order>(orderDto);
+
+            if(_orderData.ordersDict.ContainsKey(order.CustomerId))
+            {
+                // Order already recieved
+                return false;
+            }
 
             ICollection<OrderProduct> products = new List<OrderProduct>();
             // TODO : Logic for order
@@ -51,7 +59,17 @@ namespace ChocolateDeliveryVS.Services
             _dbContext.Orders.Add(order);
             _dbContext.SaveChanges();
 
+            _orderData.ordersDict.Add(order.CustomerId, new Thread(() => _orderData.CounterThread(order.CustomerId)));
+
             return true;
+        }
+
+        public bool CheckIfOrderExists(int customerId)
+        {
+            if (_orderData.ordersDict.ContainsKey(customerId))
+                return true;
+            else
+                return false;
         }
     }
 }
