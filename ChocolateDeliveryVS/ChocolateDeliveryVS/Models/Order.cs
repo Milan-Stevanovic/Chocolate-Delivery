@@ -15,5 +15,6 @@ namespace ChocolateDeliveryVS.Models
         public string Comment { get; set; }
         public ICollection<OrderProduct> OrderProducts { get; set; }
         public double Price { get; set; }
+        public DateTime DeliveryTime { get; set; }
     }
 }

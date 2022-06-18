@@ -23,14 +23,15 @@ export class UserContainerComponent implements OnInit{
             data =>
             {
                 // User Successfully Verified
-                window.location.reload();
-            },
-            error =>
-            {
-                let message: Message = new Message();
-                message.title = "Error";
-                message.messageText = "Could not verify user!"
-                this.matDialog.open(MessageDialogComponent, { data: message })
+                if(data == true)
+                    window.location.reload();
+                else
+                {
+                    let message: Message = new Message();
+                    message.title = "Error";
+                    message.messageText = "Could not verify user!"
+                    this.matDialog.open(MessageDialogComponent, { data: message })
+                }
             }
           )
     }
@@ -41,14 +42,15 @@ export class UserContainerComponent implements OnInit{
             data =>
             {
                 // User Rejected
-                window.location.reload();
-            },
-            error =>
-            {
-                let message: Message = new Message();
-                message.title = "Error";
-                message.messageText = "Could not reject user!"
-                this.matDialog.open(MessageDialogComponent, { data: message })
+                if(data == true)
+                    window.location.reload();
+                else
+                {
+                    let message: Message = new Message();
+                    message.title = "Error";
+                    message.messageText = "Could not reject user!"
+                    this.matDialog.open(MessageDialogComponent, { data: message })
+                }
             }
           )
     }

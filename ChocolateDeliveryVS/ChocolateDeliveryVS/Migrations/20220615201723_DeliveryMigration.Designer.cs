@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChocolateDeliveryVS.Migrations
 {
     [DbContext(typeof(DeliveryDbContext))]
-    [Migration("20220611092544_DeliveryMigration")]
+    [Migration("20220615201723_DeliveryMigration")]
     partial class DeliveryMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,9 @@ namespace ChocolateDeliveryVS.Migrations
 
                     b.Property<int>("DelivererId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DeliveryTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("OrderState")
                         .HasColumnType("nvarchar(max)");

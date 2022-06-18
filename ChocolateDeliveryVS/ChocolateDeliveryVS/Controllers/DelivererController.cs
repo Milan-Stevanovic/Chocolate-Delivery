@@ -1,4 +1,5 @@
-﻿using ChocolateDeliveryVS.Interfaces;
+﻿using ChocolateDeliveryVS.DTO;
+using ChocolateDeliveryVS.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,9 +27,9 @@ namespace ChocolateDeliveryVS.Controllers
         }
 
         [HttpPost("acceptOrder")]
-        public IActionResult AcceptOrder([FromBody] int id)
+        public IActionResult AcceptOrder([FromBody] AcceptOrderDto acceptOrderDto)
         {
-            return Ok(_delivererService.AcceptOrder(id));
+            return Ok(_delivererService.AcceptOrder(acceptOrderDto.OrderId, acceptOrderDto.DelivererId));
         }
     }
 }

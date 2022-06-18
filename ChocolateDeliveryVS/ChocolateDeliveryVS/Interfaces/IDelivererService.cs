@@ -10,6 +10,6 @@ namespace ChocolateDeliveryVS.Interfaces
     {
         List<OrderDisplayDto> GetAllOrders();
 
-        bool AcceptOrder(int orderId);
+        bool AcceptOrder(int orderId, int delivererId);
     }
 }

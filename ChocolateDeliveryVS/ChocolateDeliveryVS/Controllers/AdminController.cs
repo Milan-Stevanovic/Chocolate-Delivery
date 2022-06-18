@@ -22,19 +22,13 @@ namespace ChocolateDeliveryVS.Controllers
         [HttpPost("verifyUserById")]
         public IActionResult VerifyUserById([FromBody] int id)
         {
-            if (_adminService.VerifyUserById(id))
-                return Ok();
-            else
-                return Problem();
+            return Ok(_adminService.VerifyUserById(id));
         }
 
         [HttpPost("rejectUserById")]
         public IActionResult RejectUserById([FromBody] int id)
         {
-            if (_adminService.RejectUserById(id))
-                return Ok();
-            else
-                return Problem();
+            return Ok(_adminService.RejectUserById(id));
         }
     }
 }

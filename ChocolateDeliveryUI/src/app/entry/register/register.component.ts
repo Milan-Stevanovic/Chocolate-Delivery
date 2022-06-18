@@ -77,17 +77,20 @@ export class RegisterComponent implements OnInit{
             this.userService.register(registration).subscribe(
                 data => 
                 {
-                    let message: Message = new Message();
-                    message.title = "Account successfully created";
-                    message.messageText = "Please log in to continue!"
-                    this.matDialog.open(MessageDialogComponent, { data: message })
-                },
-                error => 
-                {
-                    let message: Message = new Message();
-                    message.title = "Error Occured";
-                    message.messageText = "Something went wrong"
-                    this.matDialog.open(MessageDialogComponent, { data: message })
+                    if(data == true)
+                    {
+                        let message: Message = new Message();
+                        message.title = "Account successfully created";
+                        message.messageText = "Please log in to continue!"
+                        this.matDialog.open(MessageDialogComponent, { data: message })
+                    }
+                    else
+                    {
+                        let message: Message = new Message();
+                        message.title = "Error Occured";
+                        message.messageText = "Something went wrong"
+                        this.matDialog.open(MessageDialogComponent, { data: message })
+                    }
                 }
             );
         }

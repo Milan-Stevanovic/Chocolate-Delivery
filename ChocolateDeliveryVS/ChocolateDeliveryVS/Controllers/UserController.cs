@@ -42,10 +42,7 @@ namespace ChocolateDeliveryVS.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] UserRegisterDto userRegisterDto)
         {
-            if (_userService.Register(userRegisterDto))
-                return Ok();
-            else
-                return Problem();
+            return Ok(_userService.Register(userRegisterDto));
         }
 
         [HttpPost("upload"), DisableRequestSizeLimit]
@@ -81,11 +78,7 @@ namespace ChocolateDeliveryVS.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] UserLoginDto userLoginDto)
         {
-            TokenDto token = _userService.Login(userLoginDto);
-            if (token != null)
-                return Ok(token);
-            else
-                return Problem();
+            return Ok(_userService.Login(userLoginDto));
         }
     }
 }

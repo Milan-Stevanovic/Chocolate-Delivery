@@ -8,6 +8,7 @@ import { Token } from '../models/token.model';
 import { UserDisplay } from '../models/userDisplay.model';
 import { UserProfile } from '../models/userProfile.model';
 import { Order } from '../models/order.model';
+import { AcceptOrder } from '../models/acceptOrder.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,8 @@ export class DelivererService {
       return this.http.get<Order[]>(environment.serverURL + '/api/deliverer/getAllOrders');
     }
 
-    acceptOrder(orderId : number): Observable<Object>{
-      return this.http.post<Object>(environment.serverURL + '/api/deliverer/acceptOrder', orderId)
+    acceptOrder(acceptOrder: AcceptOrder): Observable<Object>{
+      return this.http.post<Object>(environment.serverURL + '/api/deliverer/acceptOrder', acceptOrder)
     }
 }
   

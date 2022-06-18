@@ -29,20 +29,19 @@ namespace ChocolateDeliveryVS.Controllers
         [HttpPost("confirmOrder")]
         public IActionResult ConfirmOrder([FromBody] OrderDto orderDto)
         {
-            if (_customerService.ConfirmOrder(orderDto))
-                return Ok();
-            else
-                return Problem();
+            return Ok(_customerService.ConfirmOrder(orderDto));
         }
 
         [HttpPost("checkIfOrderExists")]
         public IActionResult CheckIfOrderExists([FromBody] int customerId)
         {
-            bool exists = _customerService.CheckIfOrderExists(customerId);
-            if (!exists)
-                return Ok(exists);
-            else
-                return Problem();
+            return Ok(_customerService.CheckIfOrderExists(customerId));
+        }
+
+        [HttpPost("getOrderState")]
+        public IActionResult GetOrderState([FromBody] int customerId)
+        {
+            return Ok(_customerService.GetOrderState(customerId));
         }
     }
 }

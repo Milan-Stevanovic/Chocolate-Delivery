@@ -2,7 +2,7 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { MessageDialogComponent } from 'src/app/dialogs/messageDialog/messageDialog.component';
 import { Message } from 'src/app/shared/models/message.model';
 import { Order } from 'src/app/shared/models/order.model';
@@ -52,17 +52,16 @@ export class NewCurrentOrderComponent implements OnInit {
         let decodedToken = JSON.parse(atob(token.split('.')[1]));
         customerId = decodedToken.id;
     }
-    console.log("check " + customerId)
     this.customerService.checkIfOrderExists(+customerId).subscribe(
-      data => { console.log("good") },
-      error =>
+      data => 
       {
-        console.log("error")
-        this.router.navigateByUrl('/customerCurrentOrder');
+        if(data == true)
+        {
+          this.router.navigateByUrl('/customerCurrentOrder');
+        }
       }
     )
   }
-
 
   AddProductToOrder(productToOrder : {order_product: Product, order_amount: number})
   {
@@ -123,17 +122,20 @@ export class NewCurrentOrderComponent implements OnInit {
     (
       data => 
       {
-        let message: Message = new Message();
-        message.title = "Your order has been recorded!";
-        message.messageText = "Waiting for deliverer to pick up your order!"
-        this.matDialog.open(MessageDialogComponent, { data: message })
-      },
-      error => 
-      {
-        let message: Message = new Message();
-        message.title = "Error! You already ordered!";
-        message.messageText = "Please wait for your order to be delivered before you order again!"
-        this.matDialog.open(MessageDialogComponent, { data: message })
+        if(data == true)
+        {
+          let message: Message = new Message();
+          message.title = "Your order has been recorded!";
+          message.messageText = "Waiting for deliverer to pick up your order!"
+          this.matDialog.open(MessageDialogComponent, { data: message })
+        }
+        else
+        {
+          let message: Message = new Message();
+          message.title = "Error! You already ordered!";
+          message.messageText = "Please wait for your order to be delivered before you order again!"
+          this.matDialog.open(MessageDialogComponent, { data: message })
+        }
       }
     );
   }

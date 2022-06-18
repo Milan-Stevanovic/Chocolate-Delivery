@@ -38,6 +38,9 @@ namespace ChocolateDeliveryVS.Migrations
                     b.Property<int>("DelivererId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DeliveryTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("OrderState")
                         .HasColumnType("nvarchar(max)");
 

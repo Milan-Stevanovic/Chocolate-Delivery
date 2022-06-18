@@ -13,13 +13,11 @@ namespace ChocolateDeliveryVS.Services
     {
         private readonly IMapper _mapper;
         private readonly DeliveryDbContext _dbContext;
-        private readonly OrderData _orderData;
 
-        public DelivererService(IMapper mapper, DeliveryDbContext dbContext, OrderData orderData)
+        public DelivererService(IMapper mapper, DeliveryDbContext dbContext)
         {
             _mapper = mapper;
             _dbContext = dbContext;
-            _orderData = orderData;
         }
 
         public List<OrderDisplayDto> GetAllOrders()
@@ -27,18 +25,22 @@ namespace ChocolateDeliveryVS.Services
             return _mapper.Map<List<OrderDisplayDto>>(_dbContext.Orders.ToList());
         }
 
-        public bool AcceptOrder(int orderId)
+        public bool AcceptOrder(int orderId, int delivererId)
         {
-            foreach (var order in _dbContext.Orders)
+            bool orderAccepted = false;
+            foreach (var orderItem in _dbContext.Orders)
             {
-                if(order.Id == orderId)
+                if (orderItem.Id == orderId)
                 {
-                    order.OrderState = "IN_DELIVERY";
-                    _orderData.ordersDict[order.CustomerId].Start();
-                    return true;
+                    orderItem.DelivererId = delivererId;
+                    orderItem.DeliveryTime = DateTime.Now.AddSeconds(new Random().Next(20, 30)); // TESTING
+                    //orderItem.DeliveryTime = DateTime.Now.AddMinutes(new Random().Next(15, 20));
+                    orderItem.OrderState = "IN_DELIVERY";
+                    orderAccepted = true;
                 }
             }
-            return false;
+            _dbContext.SaveChanges();
+            return orderAccepted;
         }
     }
 }

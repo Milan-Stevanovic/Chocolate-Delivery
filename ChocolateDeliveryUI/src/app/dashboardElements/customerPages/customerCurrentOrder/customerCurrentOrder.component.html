@@ -1,1 +1,19 @@
-<h1>Hello</h1>
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Countdown till your order is delivered:</h1>
+            <hr/>
+        </div>
+    </div>
+
+    <div *ngIf="staticUrl.orderState === 'PENDING'">
+        PENDING
+    </div>
+
+    <div *ngIf="staticUrl.orderState === 'IN_DELIVERY'" style="font-size: 42px;">
+        <span id="minutes"></span> : <span id="seconds"></span>
+    </div>
+
+</div>

@@ -46,23 +46,26 @@ export class LoginComponent implements OnInit{
             this.userService.login(login).subscribe(
                 (data: Token) => 
                 {
-                    localStorage.setItem('token', data.token);
-
-                    this.router.navigateByUrl('/dashboard');
-
-                    let message: Message = new Message();
-                    message.title = "Successfully logged in";
-                    message.messageText = "Welcome!"
-                    this.matDialog.open(MessageDialogComponent, { data: message })
-
-                    // let decodedToken = JSON.parse(atob(data.token.split('.')[1]));
-                },
-                error => 
-                {
-                    let message: Message = new Message();
+                    if(data != null)
+                    {
+                        localStorage.setItem('token', data.token);
+    
+                        this.router.navigateByUrl('/dashboard');
+    
+                        let message: Message = new Message();
+                        message.title = "Successfully logged in";
+                        message.messageText = "Welcome!"
+                        this.matDialog.open(MessageDialogComponent, { data: message })
+    
+                        // let decodedToken = JSON.parse(atob(data.token.split('.')[1]));
+                    }
+                    else
+                    {
+                        let message: Message = new Message();
                     message.title = "Authentication Error";
                     message.messageText = "Please check if you entered your info correctly"
                     this.matDialog.open(MessageDialogComponent, { data: message })
+                    }
                 }
             );
         }
