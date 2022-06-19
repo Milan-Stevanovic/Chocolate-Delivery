@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="confirm-order-container">
+                <h3>Confirm Your Order</h3>
+                    <div class="products">
+                        <div *ngFor="let product of order.orderProducts">
+                            {{ product.product.name }} X {{ product.quantity }}
+                        </div>
+                    </div>
+
+                    <div>
+                        Total price = {{ order.price }} RSD
+                    </div>
+
+                    <!-- TODO: add form here -->
+                    <form [formGroup]="confirmOrderForm" (ngSubmit)="ConfirmOrder()">
+                        Address
+                        <input type="text" class="form-control" formControlName="address">
+                        Comment
+                        <textarea style="max-height: 150px;" class="form-control" formControlName="comment"></textarea><br/>
+
+                        <input type="submit" value="Confirm Order" class="btn btn-light form-control">
+                    </form>
+            </div>
+        </div>
+    
+        <div class="col-9">
+            <div class="row">
+                <div class="col">
+                    <h1>Create your order now!</h1>
+                    <hr/>
+                </div>
+            </div>
+        
+            <div class="row">
+                
+                <div class="products-container">
+                    <div *ngFor="let product of products">
+                        <app-productContainer (addProductEmitter)="AddProductToOrder($event)" [product]="product"></app-productContainer>
+                    </div>
+        
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</div>

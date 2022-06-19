@@ -10,7 +10,8 @@ import { DelivererAuthGuard } from './auth/deliverer.guard';
 import { VerificationComponent } from './dashboardElements/adminPages/verification/verification.component';
 import { NewCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/newCurrentOrder.component';
 import { NewOrdersComponent } from './dashboardElements/delivererPages/newOrders/newOrders.component';
-import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages/customerCurrentOrder/customerCurrentOrder.component';
+import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/customerCurrentOrder/customerCurrentOrder.component';
+import { CustomerNewOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/customerNewOrder/customerNewOrder.component';
 
 const routes: Routes = [
   // every user
@@ -21,6 +22,7 @@ const routes: Routes = [
   
   // customer
   { path: 'newCurrentOrder', component: NewCurrentOrderComponent, canActivate:[AuthGuard]},
+  { path: 'customerNewOrder', component: CustomerNewOrderComponent, canActivate:[AuthGuard]},
   { path: 'customerCurrentOrder', component: CustomerCurrentOrderComponent, canActivate:[AuthGuard]},
   
   // deliverer

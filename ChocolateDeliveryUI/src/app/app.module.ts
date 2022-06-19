@@ -18,14 +18,15 @@ import { MessageDialogComponent } from './dialogs/messageDialog/messageDialog.co
 import { VerificationComponent } from './dashboardElements/adminPages/verification/verification.component';
 import { UserContainerComponent } from './dashboardElements/adminPages/verification/userContainer/userContainer.component';
 import { AdminService } from './shared/services/admin.service';
-import { NewCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/newCurrentOrder.component';
-import { ProductContainerComponent } from './dashboardElements/customerPages/newCurrentOrder/productContainer/productContainer.component';
+import { ProductContainerComponent } from './dashboardElements/customerPages/newCurrentOrder/customerNewOrder/productContainer/productContainer.component';
 import { CustomerService } from './shared/services/customer.service';
 import { DelivererService } from './shared/services/deliverer.service';
 import { NewOrdersComponent } from './dashboardElements/delivererPages/newOrders/newOrders.component';
 import { OrderContainerComponent } from './dashboardElements/delivererPages/newOrders/orderContainer/orderContainer.component';
 import { UploadComponent } from './uploadComponent/upload.component';
-import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages/customerCurrentOrder/customerCurrentOrder.component';
+import { NewCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/newCurrentOrder.component';
+import { CustomerNewOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/customerNewOrder/customerNewOrder.component';
+import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/customerCurrentOrder/customerCurrentOrder.component';
 
 @NgModule({
   declarations: [
@@ -40,10 +41,11 @@ import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages
     VerificationComponent,
     UserContainerComponent,
     MessageDialogComponent,
-    NewCurrentOrderComponent,
     ProductContainerComponent,
     NewOrdersComponent,
     OrderContainerComponent,
+    NewCurrentOrderComponent,
+    CustomerNewOrderComponent,
     CustomerCurrentOrderComponent
   ],
   imports: [
