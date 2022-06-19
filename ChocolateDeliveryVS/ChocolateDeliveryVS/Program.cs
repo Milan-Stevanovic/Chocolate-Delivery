@@ -1,6 +1,8 @@
+using ChocolateDeliveryVS.Interfaces;
 using ChocolateDeliveryVS.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,6 +25,11 @@ namespace ChocolateDeliveryVS
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                }).ConfigureServices(services =>
+                {
+                    services.AddHostedService<ScopedBackgroundService>();
+                    services.AddScoped<IScopedProcessingService, DefaultScopedProcessingService>();
+
                 });
     }
 }

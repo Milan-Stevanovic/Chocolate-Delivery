@@ -77,7 +77,6 @@ export class CustomerCurrentOrderComponent implements OnInit, OnDestroy {
 
     if(this.minutes === '00' && this.seconds === '00')
     {
-      console.log('clearInterval');
       clearInterval(CustomerCurrentOrderComponent.interval);
       return;
     }

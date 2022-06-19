@@ -54,7 +54,7 @@ namespace ChocolateDeliveryVS.Services
             order.OrderProducts = products;
             order.DelivererId = -1;
             order.OrderState = "PENDING";
-            order.DeliveryTime = DateTime.Now;
+            order.DeliveryTime = DateTime.MaxValue;
             _dbContext.Orders.Add(order);
             _dbContext.SaveChanges();
 

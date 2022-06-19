@@ -2,6 +2,7 @@
 using ChocolateDeliveryVS.DTO;
 using ChocolateDeliveryVS.Infrastructure;
 using ChocolateDeliveryVS.Interfaces;
+using ChocolateDeliveryVS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,20 +28,20 @@ namespace ChocolateDeliveryVS.Services
 
         public bool AcceptOrder(int orderId, int delivererId)
         {
-            bool orderAccepted = false;
-            foreach (var orderItem in _dbContext.Orders)
+            IList<Order> orderList = _dbContext.Orders.ToList();
+            foreach (var orderItem in orderList)
             {
                 if (orderItem.Id == orderId)
                 {
                     orderItem.DelivererId = delivererId;
-                    orderItem.DeliveryTime = DateTime.Now.AddSeconds(new Random().Next(20, 30)); // TESTING
-                    //orderItem.DeliveryTime = DateTime.Now.AddMinutes(new Random().Next(15, 20));
+                    //orderItem.DeliveryTime = DateTime.Now.AddSeconds(new Random().Next(20, 30)); // TESTING
+                    orderItem.DeliveryTime = DateTime.Now.AddMinutes(new Random().Next(15, 25));
                     orderItem.OrderState = "IN_DELIVERY";
-                    orderAccepted = true;
+                    _dbContext.SaveChanges();
+                    return true;
                 }
             }
-            _dbContext.SaveChanges();
-            return orderAccepted;
+            return false;
         }
     }
 }

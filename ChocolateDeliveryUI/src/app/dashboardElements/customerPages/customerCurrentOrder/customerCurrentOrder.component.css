@@ -2,3 +2,13 @@
     text-align: center;
     min-width: 550px;
 }
+
+.pending{
+    margin-top: 20px;
+    font-size: 42px;
+}
+
+.timer{
+    margin-top: 20px;
+    font-size: 42px;
+}
