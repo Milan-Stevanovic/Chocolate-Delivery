@@ -1,8 +1,4 @@
 - Upload Product image to server
 - Show Product image
 
-- Fix total price on newCurrentPage
-
 - User Profile Edit (save changes) (cannot change email and username => unique)
-
-- Delete order from DB when delivery time passes

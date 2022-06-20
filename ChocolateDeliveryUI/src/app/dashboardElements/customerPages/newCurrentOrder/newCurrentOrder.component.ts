@@ -29,7 +29,7 @@ export class NewCurrentOrderComponent implements OnInit{
             }
             else
             {
-                this.router.navigateByUrl('/customerNewOrder');
+              this.router.navigateByUrl('/customerNewOrder');
             }
           }
         )

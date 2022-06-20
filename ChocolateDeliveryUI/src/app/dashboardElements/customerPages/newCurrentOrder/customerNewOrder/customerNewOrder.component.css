@@ -18,6 +18,23 @@
 }
 
 .products{
-    overflow: scroll;
-    max-height: 300px;
+    overflow: auto;
+    max-height: 170px;
+    background-color: rgb(45, 45, 45);
+    border: 2px solid rgb(66, 66, 66);
+}
+
+.custom-button{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 2.5%;
+    width: 95%;
+}
+
+.total-price{
+    position: absolute; 
+    bottom: 0; 
+    margin: 2.5%;
+    width: 95%;
 }

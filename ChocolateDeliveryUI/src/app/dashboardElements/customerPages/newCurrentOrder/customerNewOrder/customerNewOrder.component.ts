@@ -1,8 +1,7 @@
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
-import { AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MessageDialogComponent } from 'src/app/dialogs/messageDialog/messageDialog.component';
 import { Message } from 'src/app/shared/models/message.model';
 import { Order } from 'src/app/shared/models/order.model';
@@ -47,6 +46,7 @@ export class CustomerNewOrderComponent implements OnInit {
 
   AddProductToOrder(productToOrder : {order_product: Product, order_amount: number})
   {
+    // check if product with same ID is already in cart (if yes, just change quantity and recalculate price)
     for(let product of this.order.orderProducts)
     {
       if(productToOrder.order_product.id == product.productId)
@@ -62,6 +62,7 @@ export class CustomerNewOrderComponent implements OnInit {
             this.order.orderProducts.splice(index, 1);
           }
         }
+        this.order.price = this.CalculateOrderTotalPrice();
         return;
       }
     }
@@ -77,13 +78,33 @@ export class CustomerNewOrderComponent implements OnInit {
 
     this.order.orderProducts.push(orderProduct);
 
-    for (let i = 0; i < productToOrder.order_amount; i++) {
-      this.order.price += productToOrder.order_product.price;
+    this.order.price = this.CalculateOrderTotalPrice();
+  }
+
+  CalculateOrderTotalPrice() : number 
+  {
+    let totalPrice : number = 0;
+
+    for(let cartProduct of this.order.orderProducts)
+    {
+      for(let loadedProduct of this.products)
+      {
+        if(cartProduct.productId === loadedProduct.id)
+        {
+          for(let i = 0; i < cartProduct.quantity; i++)
+          {
+            totalPrice += loadedProduct.price;
+          }
+        }
+      }
     }
+
+    return totalPrice;
   }
 
   ConfirmOrder()
   {
+    // will be used to check if customer already has pending order
     let token = localStorage.getItem('token');
     if (token != null)
     {
@@ -91,13 +112,22 @@ export class CustomerNewOrderComponent implements OnInit {
     }
     this.order.customerId = decodedToken.id;
 
+    // checking if cart is empty before confirming order
+    if(this.order.orderProducts.length == 0)
+    {
+      let message: Message = new Message();
+      message.title = "Error - Cart Empty";
+      message.messageText = "Please add items to your cart before confirming order!"
+      this.matDialog.open(MessageDialogComponent, { data: message })
+      return;
+    }
+
     if(this.confirmOrderForm.controls['address'].valid)
     {
       this.order.address = this.confirmOrderForm.controls['address'].value;
     }
 
     this.order.comment = this.confirmOrderForm.controls['comment'].value;
-
     this.order.orderState = "PENDING";
 
     this.customerService.confirmOrder(this.order).subscribe
@@ -120,5 +150,11 @@ export class CustomerNewOrderComponent implements OnInit {
         }
       }
     );
+  }
+
+  ClearOrder()
+  {
+    this.order.orderProducts = [];
+    this.order.price = 0;
   }
 }
