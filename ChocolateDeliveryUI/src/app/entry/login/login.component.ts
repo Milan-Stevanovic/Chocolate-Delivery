@@ -62,9 +62,9 @@ export class LoginComponent implements OnInit{
                     else
                     {
                         let message: Message = new Message();
-                    message.title = "Authentication Error";
-                    message.messageText = "Please check if you entered your info correctly"
-                    this.matDialog.open(MessageDialogComponent, { data: message })
+                        message.title = "Authentication Error";
+                        message.messageText = "Please check if you entered your info correctly"
+                        this.matDialog.open(MessageDialogComponent, { data: message })
                     }
                 }
             );

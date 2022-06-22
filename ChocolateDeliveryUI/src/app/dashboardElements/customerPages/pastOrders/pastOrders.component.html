@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Your past orders:</h1>
+            <hr/>
+        </div>
+    </div>
+    
+    <div class="row header">
+        <div class="col">
+            OrderID
+        </div>
+        
+        <div class="col">
+            Delivered By
+        </div>
+
+        <div class="col">
+            Order State
+        </div>
+
+        <div class="col">
+            Address
+        </div>
+
+        <div class="col">
+            Comment
+        </div>
+
+        <div class="col">
+            Products
+        </div>
+
+        <div class="col">
+            Price
+        </div>
+
+        <div class="col">
+            Delivery Time
+        </div>
+    </div>
+
+    <div *ngFor="let order of pastOrders">
+        <app-pastOrderContainer [order]="order"></app-pastOrderContainer>
+    </div>
+
+</div>

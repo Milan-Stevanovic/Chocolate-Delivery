@@ -6,6 +6,7 @@ import { Registration } from '../models/registration.model';
 import { Login } from '../models/login.model';
 import { Token } from '../models/token.model';
 import { UserDisplay } from '../models/userDisplay.model';
+import { NewProduct } from '../models/newProduct.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class AdminService {
 
     rejectUserById(id: number): Observable<Object> {
       return this.http.post<Object>(environment.serverURL + '/api/admin/rejectUserById', id);
+    }
+
+    addNewProduct(product: NewProduct): Observable<Object>{
+      return this.http.post<Object>(environment.serverURL + '/api/admin/addNewProduct', product);
     }
 }
   

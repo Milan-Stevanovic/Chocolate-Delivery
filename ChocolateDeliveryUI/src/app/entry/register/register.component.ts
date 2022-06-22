@@ -34,16 +34,6 @@ export class RegisterComponent implements OnInit{
         role: new FormControl("", [Validators.required])
     })
 
-
-    public file: any;
-
-    getfile(e: any)
-    {
-        const fileList: FileList = e.target.files;
-        this.file = fileList[0];
-        console.log(this.file);
-    }
-
     get username() { return this.registerForm.get('username') as FormControl; } 
     get email() { return this.registerForm.get('email') as FormControl; } 
     get password() { return this.registerForm.get('password') as FormControl; } 
@@ -54,9 +44,10 @@ export class RegisterComponent implements OnInit{
     get address() { return this.registerForm.get('address') as FormControl; } 
     get role() { return this.registerForm.get('role') as FormControl; } 
     
-    uploadFinished = (event : any) => { 
+    uploadFinished = (event : any) => 
+    { 
         this.response = event; 
-      }
+    }
     
     UserRegister()
     {

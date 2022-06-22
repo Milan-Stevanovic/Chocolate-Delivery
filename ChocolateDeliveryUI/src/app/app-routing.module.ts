@@ -12,6 +12,8 @@ import { NewCurrentOrderComponent } from './dashboardElements/customerPages/newC
 import { NewOrdersComponent } from './dashboardElements/delivererPages/newOrders/newOrders.component';
 import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/customerCurrentOrder/customerCurrentOrder.component';
 import { CustomerNewOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/customerNewOrder/customerNewOrder.component';
+import { AddNewProductComponent } from './dashboardElements/adminPages/addNewProduct/addNewProduct.component';
+import { PastOrdersComponent } from './dashboardElements/customerPages/pastOrders/pastOrders.component';
 
 const routes: Routes = [
   // every user
@@ -24,12 +26,14 @@ const routes: Routes = [
   { path: 'newCurrentOrder', component: NewCurrentOrderComponent, canActivate:[AuthGuard]},
   { path: 'customerNewOrder', component: CustomerNewOrderComponent, canActivate:[AuthGuard]},
   { path: 'customerCurrentOrder', component: CustomerCurrentOrderComponent, canActivate:[AuthGuard]},
+  { path: 'pastOrders', component: PastOrdersComponent, canActivate:[AuthGuard]},
   
   // deliverer
   { path: 'newOrders', component: NewOrdersComponent, canActivate:[AuthGuard]},
   
   // admin
-  { path: 'verification', component: VerificationComponent, canActivate:[AuthGuard, AdminAuthGuard] }
+  { path: 'verification', component: VerificationComponent, canActivate:[AuthGuard, AdminAuthGuard] },
+  { path: 'addNewProduct', component: AddNewProductComponent, canActivate:[AuthGuard, AdminAuthGuard] },
 ];
 
 @NgModule({

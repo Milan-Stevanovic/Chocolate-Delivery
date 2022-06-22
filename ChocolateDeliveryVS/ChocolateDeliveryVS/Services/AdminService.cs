@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Text;
 using System.Net;
+using ChocolateDeliveryVS.DTO;
 
 namespace ChocolateDeliveryVS.Services
 {
@@ -65,6 +66,13 @@ namespace ChocolateDeliveryVS.Services
 
             SendMail(user.Email, "Chocolate Delivery Verification", "You are successfully verified!");
 
+            _dbContext.SaveChanges();
+            return true;
+        }
+
+        public bool AddNewProduct(ProductDto productDto)
+        {
+            _dbContext.Products.Add(_mapper.Map<Product>(productDto));
             _dbContext.SaveChanges();
             return true;
         }

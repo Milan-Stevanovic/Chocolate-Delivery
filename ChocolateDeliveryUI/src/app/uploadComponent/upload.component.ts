@@ -26,17 +26,20 @@ export class UploadComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
     
-    this.userService.upload(formData, {reportProgress: true, observe: 'events'})
-      .subscribe({
-        next: (event) => {
-        if (event.type === HttpEventType.UploadProgress && event.total != undefined)
-          this.progress = Math.round(100 * event.loaded / event.total);
-        else if (event.type === HttpEventType.Response) {
-          this.message = 'Upload success.';
-          this.onUploadFinished.emit(event.body);
-        }
-      },
-      error: (err: HttpErrorResponse) => console.log(err)
-    });
+    this.userService.upload(formData, {reportProgress: true, observe: 'events'}).subscribe
+    (
+      {
+        next: (event) => 
+        {
+          if (event.type === HttpEventType.UploadProgress && event.total != undefined)
+            this.progress = Math.round(100 * event.loaded / event.total);
+          else if (event.type === HttpEventType.Response) {
+            this.message = 'Upload success.';
+            this.onUploadFinished.emit(event.body);
+          }
+        },
+        error: (err: HttpErrorResponse) => console.log(err)
+      }
+    );
   }
 }

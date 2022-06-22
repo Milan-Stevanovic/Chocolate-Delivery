@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace ChocolateDeliveryVS.Models
 {
-
     public class User
     {
         public long Id { get; set; }

@@ -20,7 +20,8 @@ export class CustomerNewOrderComponent implements OnInit {
   
   constructor(private customerService: CustomerService, private matDialog: MatDialog, private router: Router)
   {
-    this.customerService.getAllProducts().subscribe(
+    this.customerService.getAllProducts().subscribe
+    (
       (data: Product[]) =>
       {
         this.products = data;

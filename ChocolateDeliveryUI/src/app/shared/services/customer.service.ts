@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Order } from '../models/order.model';
 import { Product } from '../models/product.model';
 import { OrderState } from '../models/orderState.model';
+import { PastOrder } from '../models/pastOrder.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class CustomerService {
 
     getOrderState(customerId: number): Observable<OrderState>{
       return this.http.post<OrderState>(environment.serverURL + '/api/customer/getOrderState', customerId);
+    }
+
+    getAllPastOrders(customerId: number): Observable<PastOrder[]>{
+      return this.http.post<PastOrder[]>(environment.serverURL + '/api/customer/getAllPastOrders', customerId);
     }
 }
   

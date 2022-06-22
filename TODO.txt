@@ -1,3 +1,7 @@
+- Finish Customer Past Orders page (css/html)
+
+- Fix Validators for forms (Edit profile Form, Add New Product Form, Register Form, ...)
+
 - Upload Product image to server
 - Show Product image
 

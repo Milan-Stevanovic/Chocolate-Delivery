@@ -34,8 +34,8 @@ namespace ChocolateDeliveryVS.Services
                 if (orderItem.Id == orderId)
                 {
                     orderItem.DelivererId = delivererId;
-                    //orderItem.DeliveryTime = DateTime.Now.AddSeconds(new Random().Next(20, 30)); // TESTING
-                    orderItem.DeliveryTime = DateTime.Now.AddMinutes(new Random().Next(15, 25));
+                    orderItem.DeliveryTime = DateTime.Now.AddSeconds(new Random().Next(20, 30)); // TESTING
+                    //orderItem.DeliveryTime = DateTime.Now.AddMinutes(new Random().Next(15, 25));
                     orderItem.OrderState = "IN_DELIVERY";
                     _dbContext.SaveChanges();
                     return true;

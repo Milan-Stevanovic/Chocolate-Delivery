@@ -96,5 +96,38 @@ namespace ChocolateDeliveryVS.Services
             }
             return orderStateDto;
         }
+
+        public List<PastOrderDto> GetAllPastOrders(int customerId)
+        {
+            List<PastOrderDto> pastOrders = new List<PastOrderDto>();
+            var customerPastOrders = _dbContext.Orders.Where(x => x.CustomerId == customerId && x.OrderState == "DELIVERED");
+
+            foreach(var pastOrder in customerPastOrders)
+            {
+                var orderProducts = _dbContext.OrderProducts.Where(x => x.OrderId == pastOrder.Id);
+                PastOrderDto order = new PastOrderDto();
+                order.OrderId = pastOrder.Id;
+                order.DeliveredTo = $"{_dbContext.Users.First(x => x.Id == customerId).FirstName} {_dbContext.Users.First(x => x.Id == customerId).LastName}";
+                order.DeliveredBy = $"{_dbContext.Users.First(x => x.Id == pastOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == pastOrder.DelivererId).LastName}";
+                order.Address = pastOrder.Address;
+                order.Comment = pastOrder.Comment;
+                order.OrderState = pastOrder.OrderState;
+                order.Price = pastOrder.Price;
+                order.DeliveryTime = pastOrder.DeliveryTime;
+                foreach(var product in orderProducts)
+                {
+                    foreach(var loadedProduct in _dbContext.Products)
+                    {
+                        if(product.ProductId == loadedProduct.Id)
+                        {
+                            order.Products += $"{loadedProduct.Name} X {product.Quantity}\n";
+                        }
+                    }
+                }
+                pastOrders.Add(order);
+            }
+
+            return pastOrders;
+        }
     }
 }

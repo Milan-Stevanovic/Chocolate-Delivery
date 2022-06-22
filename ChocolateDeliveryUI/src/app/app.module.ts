@@ -27,6 +27,9 @@ import { UploadComponent } from './uploadComponent/upload.component';
 import { NewCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/newCurrentOrder.component';
 import { CustomerNewOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/customerNewOrder/customerNewOrder.component';
 import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/customerCurrentOrder/customerCurrentOrder.component';
+import { AddNewProductComponent } from './dashboardElements/adminPages/addNewProduct/addNewProduct.component';
+import { PastOrdersComponent } from './dashboardElements/customerPages/pastOrders/pastOrders.component';
+import { PastOrderContainerComponent } from './dashboardElements/customerPages/pastOrders/pastOrderContainer/pastOrderContainer.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages
     OrderContainerComponent,
     NewCurrentOrderComponent,
     CustomerNewOrderComponent,
-    CustomerCurrentOrderComponent
+    CustomerCurrentOrderComponent,
+    AddNewProductComponent,
+    PastOrdersComponent,
+    PastOrderContainerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
-﻿using ChocolateDeliveryVS.Interfaces;
+﻿using ChocolateDeliveryVS.DTO;
+using ChocolateDeliveryVS.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,6 +30,12 @@ namespace ChocolateDeliveryVS.Controllers
         public IActionResult RejectUserById([FromBody] int id)
         {
             return Ok(_adminService.RejectUserById(id));
+        }
+
+        [HttpPost("addNewProduct")]
+        public IActionResult AddNewProduct([FromBody] ProductDto productDto)
+        {
+            return Ok(_adminService.AddNewProduct(productDto));
         }
     }
 }

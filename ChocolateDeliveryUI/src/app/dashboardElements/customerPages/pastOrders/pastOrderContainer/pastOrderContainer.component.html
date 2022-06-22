@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {{ order.orderId }}
+        </div>
+
+        <div class="col">
+            <p>{{ order.deliveredBy }}</p>
+        </div>
+
+        <div class="col">
+            {{ order.orderState }}
+        </div>
+
+        <div class="col">
+            {{ order.address }}
+        </div>
+
+        <div class="col">
+            {{ order.comment }}
+        </div>
+
+        <div class="col">
+            {{ order.products }}
+        </div>
+
+        <div class="col">
+            {{ order.price }} RSD
+        </div>
+
+        <div class="col">
+            {{ order.deliveryTime.split('T')[0] }}<br/>
+            {{ order.deliveryTime.split('T')[1] }}
+        </div>
+    </div>
+</div>

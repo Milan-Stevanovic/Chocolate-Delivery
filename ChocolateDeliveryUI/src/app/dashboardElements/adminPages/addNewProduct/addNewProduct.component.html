@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Add New Product</h1>
+            <hr/>
+        </div>
+    </div>
+    
+    <div class="row" style="width: 50%; margin: auto;">
+        <form [formGroup]="productForm" (ngSubmit)="AddNewProduct()">
+            <table style="width: 100%;">
+                <tr>
+                    Name
+                </tr>
+                <tr>
+                    <input type="text" class="form-control" formControlName="name"/>
+        
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                        <div *ngIf="name.errors?.['required']">
+                            Product name is required.
+                        </div>
+                    </div>
+                </tr>
+        
+                <tr>
+                    Ingredients
+                </tr>
+                <tr>
+                    <input type="text" class="form-control" formControlName="ingredients"/>
+        
+                    <div *ngIf="ingredients.invalid && (ingredients.dirty || ingredients.touched)" class="alert alert-danger">
+                        <div *ngIf="ingredients.errors?.['required']">
+                            Ingredients are required.
+                        </div>
+                    </div>
+                </tr>
+    
+                <tr>
+                    Price
+                </tr>
+                <tr>
+                    <input type="number" class="form-control" formControlName="price" min="1" max="99999"/>
+        
+                    <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                        <div *ngIf="price.errors?.['required']">
+                            Price is required.
+                        </div>
+
+                        <div *ngIf="price.errors?.['min']">
+                            Minimum price is 1 RSD.
+                        </div>
+                    </div>
+                </tr>
+    
+                <tr>
+                    <td colspan="2">Product Picture</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+                    </td>
+                </tr>
+
+                <br/>
+                <tr>
+                    <input type="submit" class="btn btn-light form-control" value="Add Product"/>
+                </tr>
+            </table>
+        </form>
+    </div>
+    
+</div>
