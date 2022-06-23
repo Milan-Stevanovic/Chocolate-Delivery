@@ -11,5 +11,6 @@ namespace ChocolateDeliveryVS.Interfaces
         bool VerifyUserById(int id);
         bool RejectUserById(int id);
         bool AddNewProduct(ProductDto productDto);
+        List<OrderDisplayDto> GetAllOrders();
     }
 }

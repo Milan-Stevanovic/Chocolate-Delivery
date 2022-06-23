@@ -31,11 +31,11 @@ namespace ChocolateDeliveryVS.Services
                 var orderProducts = _dbContext.OrderProducts.Where(x => x.OrderId == dbOrder.Id);
                 OrderDisplayDto order = new OrderDisplayDto();
                 order.Id = dbOrder.Id;
-                order.DeliveringTo = $"{_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).LastName}";
+                order.DeliveryTo = $"{_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).LastName}";
                 if (dbOrder.DelivererId == -1)
-                    order.DeliveringBy = "-";
+                    order.DeliveryBy = "-";
                 else
-                    order.DeliveringBy = $"{_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).LastName}";
+                    order.DeliveryBy = $"{_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).LastName}";
                 order.Address = dbOrder.Address;
                 order.Comment = dbOrder.Comment;
                 order.OrderState = dbOrder.OrderState;
@@ -77,15 +77,15 @@ namespace ChocolateDeliveryVS.Services
         public List<OrderDisplayDto> GetAllPastOrders(int delivererId)
         {
             List<OrderDisplayDto> allOrders = new List<OrderDisplayDto>();
-            var allOrdersFromDb = _dbContext.Orders.ToList().Where(x => x.DelivererId == delivererId && x.OrderState == "DELIVERED");
+            var dbOrders = _dbContext.Orders.ToList().Where(x => x.DelivererId == delivererId && x.OrderState == "DELIVERED");
 
-            foreach (var dbOrder in allOrdersFromDb)
+            foreach (var dbOrder in dbOrders)
             {
                 var orderProducts = _dbContext.OrderProducts.Where(x => x.OrderId == dbOrder.Id);
                 OrderDisplayDto order = new OrderDisplayDto();
                 order.Id = dbOrder.Id;
-                order.DeliveringTo = $"{_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).LastName}";
-                order.DeliveringBy = $"{_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).LastName}";
+                order.DeliveryTo = $"{_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).LastName}";
+                order.DeliveryBy = $"{_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).LastName}";
                 order.Address = dbOrder.Address;
                 order.Comment = dbOrder.Comment;
                 order.OrderState = dbOrder.OrderState;

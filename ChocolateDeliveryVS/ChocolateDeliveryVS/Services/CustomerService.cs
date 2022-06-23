@@ -107,20 +107,20 @@ namespace ChocolateDeliveryVS.Services
         public List<OrderDisplayDto> GetAllPastOrders(int customerId)
         {
             List<OrderDisplayDto> pastOrders = new List<OrderDisplayDto>();
-            var customerPastOrders = _dbContext.Orders.Where(x => x.CustomerId == customerId && x.OrderState == "DELIVERED");
+            var dbOrders = _dbContext.Orders.Where(x => x.CustomerId == customerId && x.OrderState == "DELIVERED");
 
-            foreach(var pastOrder in customerPastOrders)
+            foreach(var dbOrder in dbOrders)
             {
-                var orderProducts = _dbContext.OrderProducts.Where(x => x.OrderId == pastOrder.Id);
+                var orderProducts = _dbContext.OrderProducts.Where(x => x.OrderId == dbOrder.Id);
                 OrderDisplayDto order = new OrderDisplayDto();
-                order.Id = pastOrder.Id;
-                order.DeliveringTo = $"{_dbContext.Users.First(x => x.Id == customerId).FirstName} {_dbContext.Users.First(x => x.Id == customerId).LastName}";
-                order.DeliveringBy = $"{_dbContext.Users.First(x => x.Id == pastOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == pastOrder.DelivererId).LastName}";
-                order.Address = pastOrder.Address;
-                order.Comment = pastOrder.Comment;
-                order.OrderState = pastOrder.OrderState;
-                order.Price = pastOrder.Price;
-                order.DeliveryTime = pastOrder.DeliveryTime;
+                order.Id = dbOrder.Id;
+                order.DeliveryTo = $"{_dbContext.Users.First(x => x.Id == customerId).FirstName} {_dbContext.Users.First(x => x.Id == customerId).LastName}";
+                order.DeliveryBy = $"{_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).LastName}";
+                order.Address = dbOrder.Address;
+                order.Comment = dbOrder.Comment;
+                order.OrderState = dbOrder.OrderState;
+                order.Price = dbOrder.Price;
+                order.DeliveryTime = dbOrder.DeliveryTime;
                 foreach(var product in orderProducts)
                 {
                     foreach(var loadedProduct in _dbContext.Products)

@@ -32,6 +32,8 @@ import { PastOrdersComponent } from './dashboardElements/customerPages/pastOrder
 import { PastOrderContainerComponent } from './dashboardElements/customerPages/pastOrders/pastOrderContainer/pastOrderContainer.component';
 import { MyOrdersComponent } from './dashboardElements/delivererPages/myOrders/myOrders.component';
 import { MyOrderContainerComponent } from './dashboardElements/delivererPages/myOrders/myOrderContainer/myOrderContainer.component';
+import { AllOrdersComponent } from './dashboardElements/adminPages/allOrders/allOrders.component';
+import { AllOrderContainerComponent } from './dashboardElements/adminPages/allOrders/allOrderContainer/allOrderContainer.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { MyOrderContainerComponent } from './dashboardElements/delivererPages/my
     PastOrdersComponent,
     PastOrderContainerComponent,
     MyOrdersComponent,
-    MyOrderContainerComponent
+    MyOrderContainerComponent,
+    AllOrdersComponent,
+    AllOrderContainerComponent
   ],
   imports: [
     BrowserModule,

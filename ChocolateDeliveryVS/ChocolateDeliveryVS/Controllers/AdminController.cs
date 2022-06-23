@@ -37,5 +37,11 @@ namespace ChocolateDeliveryVS.Controllers
         {
             return Ok(_adminService.AddNewProduct(productDto));
         }
+
+        [HttpGet("getAllOrders")]
+        public IActionResult GetAllOrders()
+        {
+            return Ok(_adminService.GetAllOrders());
+        }
     }
 }

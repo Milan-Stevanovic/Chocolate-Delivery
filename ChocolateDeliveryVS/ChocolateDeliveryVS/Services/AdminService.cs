@@ -77,6 +77,41 @@ namespace ChocolateDeliveryVS.Services
             return true;
         }
 
+        public List<OrderDisplayDto> GetAllOrders()
+        {
+            List<OrderDisplayDto> allOrders = new List<OrderDisplayDto>();
+            var dbOrders = _dbContext.Orders.ToList();
+
+            foreach (var dbOrder in dbOrders)
+            {
+                var orderProducts = _dbContext.OrderProducts.Where(x => x.OrderId == dbOrder.Id);
+                OrderDisplayDto order = new OrderDisplayDto();
+                order.Id = dbOrder.Id;
+                order.DeliveryTo = $"{_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).LastName}";
+                if (dbOrder.DelivererId == -1)
+                    order.DeliveryBy = "-";
+                else
+                    order.DeliveryBy = $"{_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).LastName}";
+                order.Address = dbOrder.Address;
+                order.Comment = dbOrder.Comment;
+                order.OrderState = dbOrder.OrderState;
+                order.Price = dbOrder.Price;
+                order.DeliveryTime = dbOrder.DeliveryTime;
+                foreach (var product in orderProducts)
+                {
+                    foreach (var loadedProduct in _dbContext.Products)
+                    {
+                        if (product.ProductId == loadedProduct.Id)
+                        {
+                            order.Products += $"[{loadedProduct.Name} X {product.Quantity}]\n";
+                        }
+                    }
+                }
+                allOrders.Add(order);
+            }
+            return allOrders;
+        }
+
         public void SendMail(string toEmail, string subject, string body)
         {
             try

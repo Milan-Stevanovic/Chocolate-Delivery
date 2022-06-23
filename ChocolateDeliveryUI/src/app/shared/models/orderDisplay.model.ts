@@ -1,8 +1,8 @@
 export class OrderDisplay
 {
     id : number = -1;
-    deliveringTo: string = "";
-    deliveringBy: string = "";
+    deliveryTo: string = "";
+    deliveryBy: string = "";
     orderState: string = "";
     address: string = "";
     comment: string = "";

@@ -1,0 +1,13 @@
+.container{
+    background-color: #3b3b3b;
+    margin-top: 10px;
+}
+
+.col{
+    display: table;
+}
+
+.text-align-div{
+    display: table-cell; 
+    vertical-align: middle;
+}

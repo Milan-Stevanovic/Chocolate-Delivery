@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>Your past deliveries:</h1>
+            <h1>All recorded orders:</h1>
             <hr/>
         </div>
     </div>
@@ -12,9 +12,13 @@
         <div class="col">
             OrderID
         </div>
+
+        <div class="col">
+            Delivery To
+        </div>
         
         <div class="col">
-            Delivered To
+            Delivery By
         </div>
 
         <div class="col">
@@ -42,8 +46,8 @@
         </div>
     </div>
 
-    <div *ngFor="let order of myOrders">
-        <app-pastOrderContainer [order]="order"></app-pastOrderContainer>
+    <div *ngFor="let order of allOrders">
+        <app-allOrderContainer [order]="order"></app-allOrderContainer>
     </div>
 
 </div>
