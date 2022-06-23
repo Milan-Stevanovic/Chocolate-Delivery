@@ -16,6 +16,9 @@ import { AddNewProductComponent } from './dashboardElements/adminPages/addNewPro
 import { PastOrdersComponent } from './dashboardElements/customerPages/pastOrders/pastOrders.component';
 import { MyOrdersComponent } from './dashboardElements/delivererPages/myOrders/myOrders.component';
 import { AllOrdersComponent } from './dashboardElements/adminPages/allOrders/allOrders.component';
+import { CurrentOrderComponent } from './dashboardElements/delivererPages/currentOrder/currentOrder.component';
+import { DelivererNoOrderComponent } from './dashboardElements/delivererPages/currentOrder/delivererNoOrder/delivererNoOrder.component';
+import { DelivererCurrentOrderCompoenent } from './dashboardElements/delivererPages/currentOrder/delivererCurrentOrder/delivererCurrentOrder.component';
 
 const routes: Routes = [
   // every user
@@ -33,6 +36,9 @@ const routes: Routes = [
   // deliverer
   { path: 'newOrders', component: NewOrdersComponent, canActivate:[AuthGuard]},
   { path: 'myOrders', component: MyOrdersComponent, canActivate:[AuthGuard]},
+  { path: 'currentOrder', component: CurrentOrderComponent, canActivate:[AuthGuard]},
+  { path: 'delivererCurrentOrder', component: DelivererCurrentOrderCompoenent, canActivate:[AuthGuard]},
+  { path: 'delivererNoOrder', component: DelivererNoOrderComponent, canActivate:[AuthGuard]},
   
   // admin
   { path: 'verification', component: VerificationComponent, canActivate:[AuthGuard, AdminAuthGuard] },

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { MessageDialogComponent } from 'src/app/dialogs/messageDialog/messageDialog.component';
 import { AcceptOrder } from 'src/app/shared/models/acceptOrder.model';
 import { Message } from 'src/app/shared/models/message.model';
-import { Order } from 'src/app/shared/models/order.model';
 import { OrderDisplay } from 'src/app/shared/models/orderDisplay.model';
 import { DelivererService } from 'src/app/shared/services/deliverer.service';
 
@@ -47,8 +46,8 @@ export class OrderContainerComponent implements OnInit{
           else
           {
             let message: Message = new Message();
-            message.title = "Error";
-            message.messageText = "Could not accept order!"
+            message.title = "Verification error";
+            message.messageText = "You are not verified! Only verified deliverers can accept orders."
             this.matDialog.open(MessageDialogComponent, { data: message })
           }
         }

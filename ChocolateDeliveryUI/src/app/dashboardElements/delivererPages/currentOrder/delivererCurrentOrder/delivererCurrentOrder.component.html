@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Current order status</h1>
+            <hr/>
+        </div>
+    </div>
+
+    <div *ngIf="staticUrl.orderState === 'IN_DELIVERY'" class="timer">
+        <div>You are delivering order!</div><br/><br/>
+        <div>Time for delivery remaining:</div><br/><br/>
+        <span id="minutes"></span> : <span id="seconds"></span>
+    </div>
+
+</div>

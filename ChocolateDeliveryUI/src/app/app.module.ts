@@ -34,6 +34,9 @@ import { MyOrdersComponent } from './dashboardElements/delivererPages/myOrders/m
 import { MyOrderContainerComponent } from './dashboardElements/delivererPages/myOrders/myOrderContainer/myOrderContainer.component';
 import { AllOrdersComponent } from './dashboardElements/adminPages/allOrders/allOrders.component';
 import { AllOrderContainerComponent } from './dashboardElements/adminPages/allOrders/allOrderContainer/allOrderContainer.component';
+import { CurrentOrderComponent } from './dashboardElements/delivererPages/currentOrder/currentOrder.component';
+import { DelivererCurrentOrderCompoenent } from './dashboardElements/delivererPages/currentOrder/delivererCurrentOrder/delivererCurrentOrder.component';
+import { DelivererNoOrderComponent } from './dashboardElements/delivererPages/currentOrder/delivererNoOrder/delivererNoOrder.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,10 @@ import { AllOrderContainerComponent } from './dashboardElements/adminPages/allOr
     MyOrdersComponent,
     MyOrderContainerComponent,
     AllOrdersComponent,
-    AllOrderContainerComponent
+    AllOrderContainerComponent,
+    CurrentOrderComponent,
+    DelivererCurrentOrderCompoenent,
+    DelivererNoOrderComponent
   ],
   imports: [
     BrowserModule,

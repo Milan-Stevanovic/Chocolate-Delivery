@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { OrderDisplay } from "src/app/shared/models/orderDisplay.model";
 import { AdminService } from "src/app/shared/services/admin.service";
-import { CustomerService } from "src/app/shared/services/customer.service";
 
 @Component({
     selector: 'app-allOrders',

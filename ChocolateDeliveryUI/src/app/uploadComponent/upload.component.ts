@@ -1,4 +1,4 @@
-import { HttpClient, HttpEventType, HttpErrorResponse } from '@angular/common/http';
+import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserService } from 'src/app/shared/services/user.service';
 
