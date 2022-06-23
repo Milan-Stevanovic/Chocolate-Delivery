@@ -1,8 +1,8 @@
-export class PastOrder
+export class OrderDisplay
 {
-    orderId : number = -1;
-    deliveredTo: string = "";
-    deliveredBy: string = "";
+    id : number = -1;
+    deliveringTo: string = "";
+    deliveringBy: string = "";
     orderState: string = "";
     address: string = "";
     comment: string = "";

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MessageDialogComponent } from 'src/app/dialogs/messageDialog/messageDialog.component';
 import { Message } from 'src/app/shared/models/message.model';
 import { Order } from 'src/app/shared/models/order.model';
+import { OrderDisplay } from 'src/app/shared/models/orderDisplay.model';
 import { DelivererService } from 'src/app/shared/services/deliverer.service';
 
 @Component({
@@ -13,12 +14,12 @@ import { DelivererService } from 'src/app/shared/services/deliverer.service';
 })
 export class NewOrdersComponent implements OnInit{
   
-  orders : Order[] = [];
+  orders : OrderDisplay[] = [];
 
   constructor(private delivererService: DelivererService, private matDialog: MatDialog)
   {
     this.delivererService.getAllOrders().subscribe(
-      (data: Order[]) =>
+      (data : OrderDisplay[]) =>
       {
         this.orders = data;
       },

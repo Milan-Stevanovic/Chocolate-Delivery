@@ -17,7 +17,6 @@ namespace ChocolateDeliveryVS.Interfaces
         /// <returns></returns>
         bool CheckIfOrderExists(int customerId);
         OrderStateDto GetOrderState(int customerId);
-
-        List<PastOrderDto> GetAllPastOrders(int customerId);
+        List<OrderDisplayDto> GetAllPastOrders(int customerId);
     }
 }

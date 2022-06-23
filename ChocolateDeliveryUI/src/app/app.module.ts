@@ -30,6 +30,8 @@ import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages
 import { AddNewProductComponent } from './dashboardElements/adminPages/addNewProduct/addNewProduct.component';
 import { PastOrdersComponent } from './dashboardElements/customerPages/pastOrders/pastOrders.component';
 import { PastOrderContainerComponent } from './dashboardElements/customerPages/pastOrders/pastOrderContainer/pastOrderContainer.component';
+import { MyOrdersComponent } from './dashboardElements/delivererPages/myOrders/myOrders.component';
+import { MyOrderContainerComponent } from './dashboardElements/delivererPages/myOrders/myOrderContainer/myOrderContainer.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { PastOrderContainerComponent } from './dashboardElements/customerPages/p
     CustomerCurrentOrderComponent,
     AddNewProductComponent,
     PastOrdersComponent,
-    PastOrderContainerComponent
+    PastOrderContainerComponent,
+    MyOrdersComponent,
+    MyOrderContainerComponent
   ],
   imports: [
     BrowserModule,

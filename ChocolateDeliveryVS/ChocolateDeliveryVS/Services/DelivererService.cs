@@ -23,7 +23,37 @@ namespace ChocolateDeliveryVS.Services
 
         public List<OrderDisplayDto> GetAllOrders()
         {
-            return _mapper.Map<List<OrderDisplayDto>>(_dbContext.Orders.ToList());
+            List<OrderDisplayDto> allOrders = new List<OrderDisplayDto>();
+            var allOrdersFromDb = _dbContext.Orders.ToList();
+
+            foreach (var dbOrder in allOrdersFromDb)
+            {
+                var orderProducts = _dbContext.OrderProducts.Where(x => x.OrderId == dbOrder.Id);
+                OrderDisplayDto order = new OrderDisplayDto();
+                order.Id = dbOrder.Id;
+                order.DeliveringTo = $"{_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).LastName}";
+                if (dbOrder.DelivererId == -1)
+                    order.DeliveringBy = "-";
+                else
+                    order.DeliveringBy = $"{_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).LastName}";
+                order.Address = dbOrder.Address;
+                order.Comment = dbOrder.Comment;
+                order.OrderState = dbOrder.OrderState;
+                order.Price = dbOrder.Price;
+                order.DeliveryTime = dbOrder.DeliveryTime;
+                foreach (var product in orderProducts)
+                {
+                    foreach (var loadedProduct in _dbContext.Products)
+                    {
+                        if (product.ProductId == loadedProduct.Id)
+                        {
+                            order.Products += $"[{loadedProduct.Name} X {product.Quantity}]\n";
+                        }
+                    }
+                }
+                allOrders.Add(order);
+            }
+            return allOrders;
         }
 
         public bool AcceptOrder(int orderId, int delivererId)
@@ -42,6 +72,38 @@ namespace ChocolateDeliveryVS.Services
                 }
             }
             return false;
+        }
+
+        public List<OrderDisplayDto> GetAllPastOrders(int delivererId)
+        {
+            List<OrderDisplayDto> allOrders = new List<OrderDisplayDto>();
+            var allOrdersFromDb = _dbContext.Orders.ToList().Where(x => x.DelivererId == delivererId && x.OrderState == "DELIVERED");
+
+            foreach (var dbOrder in allOrdersFromDb)
+            {
+                var orderProducts = _dbContext.OrderProducts.Where(x => x.OrderId == dbOrder.Id);
+                OrderDisplayDto order = new OrderDisplayDto();
+                order.Id = dbOrder.Id;
+                order.DeliveringTo = $"{_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.CustomerId).LastName}";
+                order.DeliveringBy = $"{_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == dbOrder.DelivererId).LastName}";
+                order.Address = dbOrder.Address;
+                order.Comment = dbOrder.Comment;
+                order.OrderState = dbOrder.OrderState;
+                order.Price = dbOrder.Price;
+                order.DeliveryTime = dbOrder.DeliveryTime;
+                foreach (var product in orderProducts)
+                {
+                    foreach (var loadedProduct in _dbContext.Products)
+                    {
+                        if (product.ProductId == loadedProduct.Id)
+                        {
+                            order.Products += $"[{loadedProduct.Name} X {product.Quantity}]\n";
+                        }
+                    }
+                }
+                allOrders.Add(order);
+            }
+            return allOrders;
         }
     }
 }

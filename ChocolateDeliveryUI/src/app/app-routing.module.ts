@@ -14,6 +14,7 @@ import { CustomerCurrentOrderComponent } from './dashboardElements/customerPages
 import { CustomerNewOrderComponent } from './dashboardElements/customerPages/newCurrentOrder/customerNewOrder/customerNewOrder.component';
 import { AddNewProductComponent } from './dashboardElements/adminPages/addNewProduct/addNewProduct.component';
 import { PastOrdersComponent } from './dashboardElements/customerPages/pastOrders/pastOrders.component';
+import { MyOrdersComponent } from './dashboardElements/delivererPages/myOrders/myOrders.component';
 
 const routes: Routes = [
   // every user
@@ -30,6 +31,7 @@ const routes: Routes = [
   
   // deliverer
   { path: 'newOrders', component: NewOrdersComponent, canActivate:[AuthGuard]},
+  { path: 'myOrders', component: MyOrdersComponent, canActivate:[AuthGuard]},
   
   // admin
   { path: 'verification', component: VerificationComponent, canActivate:[AuthGuard, AdminAuthGuard] },

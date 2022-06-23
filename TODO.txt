@@ -1,4 +1,4 @@
-- Finish Customer Past Orders page (css/html)
+- Only verified Deliverers can accept orders
 
 - Fix Validators for forms (Edit profile Form, Add New Product Form, Register Form, ...)
 

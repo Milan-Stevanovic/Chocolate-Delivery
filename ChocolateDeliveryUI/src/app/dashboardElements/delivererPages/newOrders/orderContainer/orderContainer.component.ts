@@ -5,6 +5,7 @@ import { MessageDialogComponent } from 'src/app/dialogs/messageDialog/messageDia
 import { AcceptOrder } from 'src/app/shared/models/acceptOrder.model';
 import { Message } from 'src/app/shared/models/message.model';
 import { Order } from 'src/app/shared/models/order.model';
+import { OrderDisplay } from 'src/app/shared/models/orderDisplay.model';
 import { DelivererService } from 'src/app/shared/services/deliverer.service';
 
 @Component({
@@ -14,7 +15,7 @@ import { DelivererService } from 'src/app/shared/services/deliverer.service';
 })
 export class OrderContainerComponent implements OnInit{
 
-    @Input() orderData: Order = new Order();
+    @Input() orderData: OrderDisplay = new OrderDisplay();
 
     constructor(private delivererService: DelivererService, private matDialog: MatDialog, private router: Router) { }
 

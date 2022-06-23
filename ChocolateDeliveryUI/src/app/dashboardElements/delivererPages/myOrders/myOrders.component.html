@@ -3,24 +3,22 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>Pending Orders</h1>
+            <h1>Your past orders:</h1>
             <hr/>
         </div>
     </div>
-
+    
     <div class="row header">
-        <!--
-            <div class="col">
-                Id
-            </div>
-        -->
-
         <div class="col">
-            Order ID
+            OrderID
+        </div>
+        
+        <div class="col">
+            Delivered To
         </div>
 
         <div class="col">
-            Delivering To
+            Order State
         </div>
 
         <div class="col">
@@ -36,16 +34,16 @@
         </div>
 
         <div class="col">
-            Total Price
+            Price
         </div>
 
         <div class="col">
-            Accept Order
+            Delivery Time
         </div>
     </div>
 
-    <div *ngFor="let order of orders">
-        <app-orderContainer *ngIf="order.orderState == 'PENDING'" [orderData] = "order"></app-orderContainer>
+    <div *ngFor="let order of myOrders">
+        <app-pastOrderContainer [order]="order"></app-pastOrderContainer>
     </div>
 
 </div>

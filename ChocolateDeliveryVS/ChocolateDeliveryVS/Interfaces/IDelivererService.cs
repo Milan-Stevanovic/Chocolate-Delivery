@@ -9,7 +9,7 @@ namespace ChocolateDeliveryVS.Interfaces
     public interface IDelivererService
     {
         List<OrderDisplayDto> GetAllOrders();
-
         bool AcceptOrder(int orderId, int delivererId);
+        List<OrderDisplayDto> GetAllPastOrders(int delivererId);
     }
 }

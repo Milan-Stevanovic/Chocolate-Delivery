@@ -1,22 +1,44 @@
 <div class="row">
     <div class="col">
-        <p>{{ orderData.id }}</p>
+        <div class="align-div">
+            {{ orderData.id }}
+        </div>
     </div>
 
     <div class="col">
-        <p>{{ orderData.address }}</p>
+        <div class="align-div">
+            {{ orderData.deliveringTo }}
+        </div>
     </div>
 
     <div class="col">
-        <p>{{ orderData.comment }} </p>
+        <div class="align-div">
+            {{ orderData.address }}
+        </div>
     </div>
 
     <div class="col">
-        <p>{{ orderData.price }} RSD</p>
+        <div class="align-div">
+            {{ orderData.comment }}
+        </div>
     </div>
 
     <div class="col">
-        <button class="btn btn-light verify-button" (click)="AcceptOrder(orderData.id)">Accept Order</button>
+        <div class="align-div">
+            {{ orderData.products }}
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="align-div">
+            {{ orderData.price }} RSD
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="align-div">
+            <button class="btn btn-light verify-button" (click)="AcceptOrder(orderData.id)">Accept Order</button>
+        </div>
     </div>
 
 </div>

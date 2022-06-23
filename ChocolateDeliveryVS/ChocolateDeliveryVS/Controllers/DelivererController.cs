@@ -31,5 +31,11 @@ namespace ChocolateDeliveryVS.Controllers
         {
             return Ok(_delivererService.AcceptOrder(acceptOrderDto.OrderId, acceptOrderDto.DelivererId));
         }
+
+        [HttpPost("getAllPastOrders")]
+        public IActionResult GetAllPastOrders([FromBody] int delivererId)
+        {
+            return Ok(_delivererService.GetAllPastOrders(delivererId));
+        }
     }
 }

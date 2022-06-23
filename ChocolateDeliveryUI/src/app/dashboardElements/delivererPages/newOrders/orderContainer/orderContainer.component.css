@@ -4,10 +4,17 @@
     margin: 5px 0 5px 0;
 }
 
-.col p{
-    padding-top: 10px;
+.col{
+    padding-top: 5px;
+    display: table;
 }
 
 .col{
-    padding-top: 5px;
+    display: table;
+}
+
+.align-div{
+    display: table-cell; 
+    vertical-align: middle;
+    padding-bottom: 5px;
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Order } from "src/app/shared/models/order.model";
-import { PastOrder } from "src/app/shared/models/pastOrder.model";
+import { OrderDisplay } from "src/app/shared/models/orderDisplay.model";
 import { CustomerService } from "src/app/shared/services/customer.service";
 
 @Component({
@@ -11,7 +10,7 @@ import { CustomerService } from "src/app/shared/services/customer.service";
 
 export class PastOrdersComponent implements OnInit {
     
-    pastOrders : PastOrder[] = [];
+    pastOrders : OrderDisplay[] = [];
     
     constructor(private customerService : CustomerService) 
     {
@@ -25,7 +24,7 @@ export class PastOrdersComponent implements OnInit {
         }
         this.customerService.getAllPastOrders(+customerId).subscribe
         (
-            (data: PastOrder[]) => 
+            (data: OrderDisplay[]) => 
             {
                 this.pastOrders = data;
             }

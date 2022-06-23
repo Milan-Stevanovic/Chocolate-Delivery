@@ -38,7 +38,13 @@ namespace ChocolateDeliveryVS.Services
             }
 
             ICollection<OrderProduct> products = new List<OrderProduct>();
-            // TODO : Logic for order
+            
+            // If address is null or empty, use address provided during register
+            if(String.IsNullOrEmpty(order.Address))
+            {
+                order.Address = _dbContext.Users.Find(Convert.ToInt64(order.CustomerId)).Address;
+            }
+
             foreach (var orderProduct in order.OrderProducts)
             {
                 Product product = _dbContext.Products.Find(orderProduct.ProductId);
@@ -55,6 +61,7 @@ namespace ChocolateDeliveryVS.Services
             order.DelivererId = -1;
             order.OrderState = "PENDING";
             order.DeliveryTime = DateTime.MaxValue;
+            order.Price += 250; // delivery fee
             _dbContext.Orders.Add(order);
             _dbContext.SaveChanges();
 
@@ -97,18 +104,18 @@ namespace ChocolateDeliveryVS.Services
             return orderStateDto;
         }
 
-        public List<PastOrderDto> GetAllPastOrders(int customerId)
+        public List<OrderDisplayDto> GetAllPastOrders(int customerId)
         {
-            List<PastOrderDto> pastOrders = new List<PastOrderDto>();
+            List<OrderDisplayDto> pastOrders = new List<OrderDisplayDto>();
             var customerPastOrders = _dbContext.Orders.Where(x => x.CustomerId == customerId && x.OrderState == "DELIVERED");
 
             foreach(var pastOrder in customerPastOrders)
             {
                 var orderProducts = _dbContext.OrderProducts.Where(x => x.OrderId == pastOrder.Id);
-                PastOrderDto order = new PastOrderDto();
-                order.OrderId = pastOrder.Id;
-                order.DeliveredTo = $"{_dbContext.Users.First(x => x.Id == customerId).FirstName} {_dbContext.Users.First(x => x.Id == customerId).LastName}";
-                order.DeliveredBy = $"{_dbContext.Users.First(x => x.Id == pastOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == pastOrder.DelivererId).LastName}";
+                OrderDisplayDto order = new OrderDisplayDto();
+                order.Id = pastOrder.Id;
+                order.DeliveringTo = $"{_dbContext.Users.First(x => x.Id == customerId).FirstName} {_dbContext.Users.First(x => x.Id == customerId).LastName}";
+                order.DeliveringBy = $"{_dbContext.Users.First(x => x.Id == pastOrder.DelivererId).FirstName} {_dbContext.Users.First(x => x.Id == pastOrder.DelivererId).LastName}";
                 order.Address = pastOrder.Address;
                 order.Comment = pastOrder.Comment;
                 order.OrderState = pastOrder.OrderState;
@@ -120,7 +127,7 @@ namespace ChocolateDeliveryVS.Services
                     {
                         if(product.ProductId == loadedProduct.Id)
                         {
-                            order.Products += $"{loadedProduct.Name} X {product.Quantity}\n";
+                            order.Products += $"[{loadedProduct.Name} X {product.Quantity}]\n";
                         }
                     }
                 }
