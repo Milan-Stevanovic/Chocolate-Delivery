@@ -62,6 +62,14 @@ namespace ChocolateDeliveryVS.Services
                 return false;
 
             IList<Order> orderList = _dbContext.Orders.ToList();
+
+            // check if deliverer already has active delivery
+            foreach (var orderItem in orderList)
+            {
+                if(orderItem.OrderState == "IN_DELIVERY" && orderItem.DelivererId == delivererId)
+                    return false;
+            }
+
             foreach (var orderItem in orderList)
             {
                 if (orderItem.Id == orderId)

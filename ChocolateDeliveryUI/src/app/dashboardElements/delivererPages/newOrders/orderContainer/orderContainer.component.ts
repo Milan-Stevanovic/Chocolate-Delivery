@@ -35,13 +35,15 @@ export class OrderContainerComponent implements OnInit{
       acceptOrderModel.orderId = orderId;
       acceptOrderModel.delivererId = delivererId;
 
+      
+
       this.delivererService.acceptOrder(acceptOrderModel).subscribe(
         data =>
         {
           if(data == true)
           {
             // Order successfully accepted
-            window.location.reload();
+            this.router.navigateByUrl('/currentOrder');
           }
           else
           {

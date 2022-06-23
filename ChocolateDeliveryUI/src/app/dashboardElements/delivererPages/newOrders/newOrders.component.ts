@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { MessageDialogComponent } from 'src/app/dialogs/messageDialog/messageDialog.component';
 import { Message } from 'src/app/shared/models/message.model';
 import { Order } from 'src/app/shared/models/order.model';
@@ -15,8 +16,25 @@ export class NewOrdersComponent implements OnInit{
   
   orders : OrderDisplay[] = [];
 
-  constructor(private delivererService: DelivererService, private matDialog: MatDialog)
+  constructor(private delivererService: DelivererService, private matDialog: MatDialog, private router: Router)
   {
+    let token = localStorage.getItem('token');
+    let delivererId : number = -1;
+    if (token != null)
+    {
+        let decodedToken = JSON.parse(atob(token.split('.')[1]));
+        delivererId = decodedToken.id;
+    }
+    this.delivererService.checkIfOrderExists(+delivererId).subscribe(
+      data => 
+      {
+        if(data == true)
+        {
+          this.router.navigateByUrl('/currentOrder');
+        }
+      }
+    )
+
     this.delivererService.getAllOrders().subscribe(
       (data : OrderDisplay[]) =>
       {
