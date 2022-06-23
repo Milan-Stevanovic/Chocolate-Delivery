@@ -37,5 +37,17 @@ namespace ChocolateDeliveryVS.Controllers
         {
             return Ok(_delivererService.GetAllPastOrders(delivererId));
         }
+
+        [HttpPost("checkIfOrderExists")]
+        public IActionResult CheckIfOrderExists([FromBody] int delivererId)
+        {
+            return Ok(_delivererService.CheckIfOrderExists(delivererId));
+        }
+
+        [HttpPost("getOrderState")]
+        public IActionResult GetOrderState([FromBody] int delivererId)
+        {
+            return Ok(_delivererService.GetOrderState(delivererId));
+        }
     }
 }

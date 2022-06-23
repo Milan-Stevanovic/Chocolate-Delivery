@@ -1,5 +1,3 @@
-- Only verified Deliverers can accept orders
-
 - Fix Validators for forms (Edit profile Form, Add New Product Form, Register Form, ...)
 
 - User Profile Edit (save changes) (cannot change email and username => unique)

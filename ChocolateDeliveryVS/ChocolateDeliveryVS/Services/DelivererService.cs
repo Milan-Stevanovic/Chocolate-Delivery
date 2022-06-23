@@ -58,6 +58,9 @@ namespace ChocolateDeliveryVS.Services
 
         public bool AcceptOrder(int orderId, int delivererId)
         {
+            if (_dbContext.Users.Find(Convert.ToInt64(delivererId)).Verified != true) // check if deliverer is verified
+                return false;
+
             IList<Order> orderList = _dbContext.Orders.ToList();
             foreach (var orderItem in orderList)
             {
@@ -104,6 +107,38 @@ namespace ChocolateDeliveryVS.Services
                 allOrders.Add(order);
             }
             return allOrders;
+        }
+
+        public bool CheckIfOrderExists(int delivererId)
+        {
+            foreach (var order in _dbContext.Orders)
+            {
+                if (order.DelivererId == delivererId)
+                {
+                    if (order.OrderState == "IN_DELIVERY")
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false; // Order does not exist
+        }
+
+        public OrderStateDto GetOrderState(int delivererId)
+        {
+            OrderStateDto orderStateDto = new OrderStateDto();
+            foreach (var orderItem in _dbContext.Orders)
+            {
+                if (orderItem.DelivererId == delivererId)
+                {
+                    if (orderItem.OrderState == "IN_DELIVERY")
+                    {
+                        orderStateDto.OrderState = orderItem.OrderState;
+                        orderStateDto.DeliveryTime = orderItem.DeliveryTime;
+                    }
+                }
+            }
+            return orderStateDto;
         }
     }
 }

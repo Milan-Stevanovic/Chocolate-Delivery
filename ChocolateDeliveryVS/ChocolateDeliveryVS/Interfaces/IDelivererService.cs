@@ -11,5 +11,7 @@ namespace ChocolateDeliveryVS.Interfaces
         List<OrderDisplayDto> GetAllOrders();
         bool AcceptOrder(int orderId, int delivererId);
         List<OrderDisplayDto> GetAllPastOrders(int delivererId);
+        bool CheckIfOrderExists(int delivererId);
+        OrderStateDto GetOrderState(int delivererId);
     }
 }
