@@ -80,5 +80,11 @@ namespace ChocolateDeliveryVS.Controllers
         {
             return Ok(_userService.Login(userLoginDto));
         }
+
+        [HttpPost("updateUserProfile")]
+        public IActionResult UpdateUserProfile([FromBody] UserProfileDto userProfileDto)
+        {
+            return Ok(_userService.UpdateUserProfile(userProfileDto));
+        }
     }
 }

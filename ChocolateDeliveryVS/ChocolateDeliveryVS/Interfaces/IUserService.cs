@@ -12,5 +12,6 @@ namespace ChocolateDeliveryVS.Interfaces
         List<UserDisplayDto> GetAllUsers();
         bool Register(UserRegisterDto userDto);
         TokenDto Login(UserLoginDto dto);
+        bool UpdateUserProfile(UserProfileDto userProfileDto);
     }
 }

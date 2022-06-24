@@ -92,15 +92,29 @@
     <div class="row">
         <div class="col">
             <div class="col dashboard-items-holder" style="margin: 0;">
-                <h4>Customize Account</h4>
+                <h4>Account</h4>
                 <hr/>
-                <a routerLink="/profile">
-                    <div class="dashboard-item">
-                        <img src="/assets/icons/profile-icon.png" class="dashboard-icon"/><br/>
-                        Profile
-                    </div>
-                </a>
 
+                <div class="row">
+                    <div class="col">
+                        <a routerLink="/profile">
+                            <div class="dashboard-item">
+                                <img src="/assets/icons/profile-icon.png" class="dashboard-icon"/><br/>
+                                Edit Profile
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col">
+                        <a routerLink="">
+                            <div class="dashboard-item">
+                                <img src="/assets/icons/password.png" class="dashboard-icon"/><br/>
+                                Change Password
+                            </div>
+                        </a>
+                    </div>
+                </div>
+               
             </div>
         </div>
     </div>

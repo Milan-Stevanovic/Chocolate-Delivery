@@ -2,3 +2,17 @@
     text-align: center;
     min-width: 550px;
 }
+
+table{
+    width: 50%; 
+    margin:auto;
+    text-align: left;
+}
+
+tr.space-under>td {
+    padding-bottom: 10px;
+}
+
+tr{
+    font-size: larger;
+}

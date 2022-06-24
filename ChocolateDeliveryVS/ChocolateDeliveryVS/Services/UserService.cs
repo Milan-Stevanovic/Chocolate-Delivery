@@ -106,23 +106,19 @@ namespace ChocolateDeliveryVS.Services
             {
                 List<Claim> claims = new List<Claim>();
                 //Mozemo dodati Claimove u token, oni ce biti vidljivi u tokenu i mozemo ih koristiti za autorizaciju
-                if (user.Role== "ADMIN")
-                    claims.Add(new Claim("role", "ADMIN")); //Add user type to claim
-                if (user.Role == "CUSTOMER")
-                    claims.Add(new Claim("role", "CUSTOMER")); //Add user type to claim
-                if (user.Role == "DELIVERER")
-                    claims.Add(new Claim("role", "DELIVERER")); //Add user type to claim
 
                 claims.Add(new Claim("id", user.Id.ToString()));
                 claims.Add(new Claim("email", user.Email));
                 claims.Add(new Claim("username", user.Username));
+                claims.Add(new Claim("role", user.Role));
+                claims.Add(new Claim(ClaimTypes.Role, user.Role));
 
                 //Kreiramo kredencijale za potpisivanje tokena. Token mora biti potpisan privatnim kljucem
                 //kako bi se sprecile njegove neovlascene izmene
                 SymmetricSecurityKey secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey.Value));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 var tokenOptions = new JwtSecurityToken(
-                    issuer: "https://localhost:44398", //url servera koji je izdao token
+                    issuer: "http://localhost:44394", //url servera koji je izdao token
                     claims: claims, //claimovi
                     expires: DateTime.Now.AddMinutes(15), //vazenje tokena u minutama
                     signingCredentials: signinCredentials //kredencijali za potpis
@@ -152,6 +148,27 @@ namespace ChocolateDeliveryVS.Services
                 return null;
 
             return _mapper.Map<UserProfileDto>(user);
+        }
+
+        public bool UpdateUserProfile(UserProfileDto userProfileDto)
+        {
+            var users = _dbContext.Users.ToList();
+            User updatedUser = _mapper.Map<User>(userProfileDto);
+            foreach(var user in users)
+            {
+                if(user.Email == userProfileDto.Email)
+                {
+                    user.Username = updatedUser.Username;
+                    user.FirstName = updatedUser.FirstName;
+                    user.LastName = updatedUser.LastName;
+                    user.DateOfBirth = updatedUser.DateOfBirth;
+                    user.Address = updatedUser.Address;
+                    user.ProfilePicture = updatedUser.ProfilePicture;
+                    _dbContext.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

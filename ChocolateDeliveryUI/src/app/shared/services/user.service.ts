@@ -35,5 +35,9 @@ export class UserService {
     upload(formData : any, progress :any): Observable<HttpEvent<Object>>{
       return this.http.post<HttpEvent<Object>>(environment.serverURL + '/api/users/upload', formData, {reportProgress: true, observe: 'events'})
     }
+
+    updateUserProfile(userProfile: UserProfile): Observable<Object>{
+      return this.http.post<Object>(environment.serverURL + '/api/users/updateUserProfile', userProfile);
+    }
 }
   

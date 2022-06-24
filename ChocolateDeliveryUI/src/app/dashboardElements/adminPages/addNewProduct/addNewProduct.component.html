@@ -12,52 +12,64 @@
         <form [formGroup]="productForm" (ngSubmit)="AddNewProduct()">
             <table style="width: 100%;">
                 <tr>
-                    Name
+                    <td>
+                        Name
+                    </td>
                 </tr>
-                <tr>
-                    <input type="text" class="form-control" formControlName="name"/>
-        
-                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-                        <div *ngIf="name.errors?.['required']">
-                            Product name is required.
+                <tr class="space-under">
+                    <td>
+                        <input type="text" class="form-control" formControlName="name"/>
+            
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                            <div *ngIf="name.errors?.['required']">
+                                Product name is required.
+                            </div>
                         </div>
-                    </div>
+                    </td>
                 </tr>
         
                 <tr>
-                    Ingredients
+                    <td>
+                        Ingredients
+                    </td>
                 </tr>
-                <tr>
-                    <input type="text" class="form-control" formControlName="ingredients"/>
-        
-                    <div *ngIf="ingredients.invalid && (ingredients.dirty || ingredients.touched)" class="alert alert-danger">
-                        <div *ngIf="ingredients.errors?.['required']">
-                            Ingredients are required.
+                <tr class="space-under">
+                    <td>
+                        <input type="text" class="form-control" formControlName="ingredients"/>
+            
+                        <div *ngIf="ingredients.invalid && (ingredients.dirty || ingredients.touched)" class="alert alert-danger">
+                            <div *ngIf="ingredients.errors?.['required']">
+                                Ingredients are required.
+                            </div>
                         </div>
-                    </div>
+                    </td>
                 </tr>
     
                 <tr>
-                    Price
+                    <td>
+                        Price
+                    </td>
                 </tr>
-                <tr>
-                    <input type="number" class="form-control" formControlName="price" min="1" max="99999"/>
-        
-                    <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
-                        <div *ngIf="price.errors?.['required']">
-                            Price is required.
+                <tr class="space-under">
+                    <td>
+                        <input type="number" class="form-control" formControlName="price" min="1" max="99999"/>
+            
+                        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                            <div *ngIf="price.errors?.['required']">
+                                Price is required.
+                            </div>
+    
+                            <div *ngIf="price.errors?.['min']">
+                                Minimum price is 1 RSD.
+                            </div>
                         </div>
-
-                        <div *ngIf="price.errors?.['min']">
-                            Minimum price is 1 RSD.
-                        </div>
-                    </div>
+                    </td>
                 </tr>
     
                 <tr>
                     <td colspan="2">Product Picture</td>
                 </tr>
-                <tr>
+                <tr class="space-under">
                     <td colspan="2">
                         <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
                     </td>
@@ -65,7 +77,9 @@
 
                 <br/>
                 <tr>
-                    <input type="submit" class="btn btn-light form-control" value="Add Product"/>
+                    <td>
+                        <input type="submit" class="btn btn-light form-control" value="Add Product"/>
+                    </td>
                 </tr>
             </table>
         </form>

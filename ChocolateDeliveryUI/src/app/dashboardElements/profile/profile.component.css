@@ -2,15 +2,31 @@
     width: fit-content;
     margin: auto;
     margin-top: 10px;
+    border-radius: 50% 50%;
+}
+
+table{
+    width: 50%; 
+    margin:auto;
+    text-align: left;
+}
+
+td{
+    font-size: larger;
+}
+
+tr.space-under>td {
+    padding-bottom: 10px;
+}
+
+.profile-image{
+    border-radius: 3px;
+    height: 250px;
+    max-height: 250px;
 }
 
 .image-holder > input{
     display: none;
-}
-
-.image-holder:hover{
-    opacity: 0.4;
-    transition: transform 0.3s, opacity 0.3s;
 }
 
 .container{

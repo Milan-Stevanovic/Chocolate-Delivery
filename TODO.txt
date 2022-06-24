@@ -1,3 +1,3 @@
-- Fix Validators for forms (Edit profile Form, Add New Product Form, Register Form, ...)
+- Add ChangePassword page and implement logic
 
-- User Profile Edit (save changes) (cannot change email and username => unique)
+- Fix Validators for forms (Edit profile Form, Add New Product Form, Register Form)
