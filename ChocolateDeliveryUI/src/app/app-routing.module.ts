@@ -19,6 +19,7 @@ import { AllOrdersComponent } from './dashboardElements/adminPages/allOrders/all
 import { CurrentOrderComponent } from './dashboardElements/delivererPages/currentOrder/currentOrder.component';
 import { DelivererNoOrderComponent } from './dashboardElements/delivererPages/currentOrder/delivererNoOrder/delivererNoOrder.component';
 import { DelivererCurrentOrderCompoenent } from './dashboardElements/delivererPages/currentOrder/delivererCurrentOrder/delivererCurrentOrder.component';
+import { ChangePasswordComponent } from './dashboardElements/changePassword/changePassword.component';
 
 const routes: Routes = [
   // every user
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'entry', component: EntryComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard] },
+  { path: 'changePassword', component: ChangePasswordComponent, canActivate:[AuthGuard] },
   
   // customer
   { path: 'newCurrentOrder', component: NewCurrentOrderComponent, canActivate:[AuthGuard]},
@@ -34,7 +36,7 @@ const routes: Routes = [
   { path: 'pastOrders', component: PastOrdersComponent, canActivate:[AuthGuard]},
   
   // deliverer
-  { path: 'newOrders', component: NewOrdersComponent, canActivate:[AuthGuard]},
+  { path: 'newOrders', component: NewOrdersComponent, canActivate:[AuthGuard, DelivererAuthGuard]},
   { path: 'myOrders', component: MyOrdersComponent, canActivate:[AuthGuard]},
   { path: 'currentOrder', component: CurrentOrderComponent, canActivate:[AuthGuard]},
   { path: 'delivererCurrentOrder', component: DelivererCurrentOrderCompoenent, canActivate:[AuthGuard]},

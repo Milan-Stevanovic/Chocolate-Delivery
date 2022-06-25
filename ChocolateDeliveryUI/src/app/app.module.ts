@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,6 +37,8 @@ import { AllOrderContainerComponent } from './dashboardElements/adminPages/allOr
 import { CurrentOrderComponent } from './dashboardElements/delivererPages/currentOrder/currentOrder.component';
 import { DelivererCurrentOrderCompoenent } from './dashboardElements/delivererPages/currentOrder/delivererCurrentOrder/delivererCurrentOrder.component';
 import { DelivererNoOrderComponent } from './dashboardElements/delivererPages/currentOrder/delivererNoOrder/delivererNoOrder.component';
+import { ChangePasswordComponent } from './dashboardElements/changePassword/changePassword.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { DelivererNoOrderComponent } from './dashboardElements/delivererPages/cu
     AllOrderContainerComponent,
     CurrentOrderComponent,
     DelivererCurrentOrderCompoenent,
-    DelivererNoOrderComponent
+    DelivererNoOrderComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,12 @@ import { DelivererNoOrderComponent } from './dashboardElements/delivererPages/cu
     UserService,
     AdminService,
     CustomerService,
-    DelivererService
+    DelivererService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

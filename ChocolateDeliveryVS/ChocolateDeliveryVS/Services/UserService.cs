@@ -107,11 +107,11 @@ namespace ChocolateDeliveryVS.Services
                 List<Claim> claims = new List<Claim>();
                 //Mozemo dodati Claimove u token, oni ce biti vidljivi u tokenu i mozemo ih koristiti za autorizaciju
 
+                claims.Add(new Claim(ClaimTypes.Role, user.Role));
                 claims.Add(new Claim("id", user.Id.ToString()));
                 claims.Add(new Claim("email", user.Email));
                 claims.Add(new Claim("username", user.Username));
                 claims.Add(new Claim("role", user.Role));
-                claims.Add(new Claim(ClaimTypes.Role, user.Role));
 
                 //Kreiramo kredencijale za potpisivanje tokena. Token mora biti potpisan privatnim kljucem
                 //kako bi se sprecile njegove neovlascene izmene
@@ -167,6 +167,17 @@ namespace ChocolateDeliveryVS.Services
                     _dbContext.SaveChanges();
                     return true;
                 }
+            }
+            return false;
+        }
+
+        public bool ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            if(changePasswordDto.NewPassword == changePasswordDto.ConfirmNewPassword)
+            {
+                _dbContext.Users.Find(changePasswordDto.UserId).Password = BCrypt.Net.BCrypt.HashPassword(changePasswordDto.NewPassword);
+                _dbContext.SaveChanges();
+                return true;
             }
             return false;
         }

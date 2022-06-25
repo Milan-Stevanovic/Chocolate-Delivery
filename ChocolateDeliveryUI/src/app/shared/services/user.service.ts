@@ -7,6 +7,7 @@ import { Login } from '../models/login.model';
 import { Token } from '../models/token.model';
 import { UserDisplay } from '../models/userDisplay.model';
 import { UserProfile } from '../models/userProfile.model';
+import { ChangePassword } from '../models/changePassword.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,10 @@ export class UserService {
 
     updateUserProfile(userProfile: UserProfile): Observable<Object>{
       return this.http.post<Object>(environment.serverURL + '/api/users/updateUserProfile', userProfile);
+    }
+
+    changePassword(changePassword: ChangePassword): Observable<Object>{
+      return this.http.post<Object>(environment.serverURL + '/api/users/changePassword', changePassword);
     }
 }
   

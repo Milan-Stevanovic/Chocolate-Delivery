@@ -72,13 +72,6 @@ namespace ChocolateDeliveryVS
                 });
             });
 
-            /*
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("SamoOdabrani", policy => policy.RequireClaim("Neki_moj_claim")); //Ovde mozemo kreirati pravilo za validaciju nekog naseg claima
-            });
-            */
-
             services.AddAuthentication(opt => {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;

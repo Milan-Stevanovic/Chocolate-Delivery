@@ -19,7 +19,6 @@ export class AllOrdersComponent implements OnInit {
             (data: OrderDisplay[]) => 
             {
                 this.allOrders = data;
-                console.log(data)
             }
         )
     }

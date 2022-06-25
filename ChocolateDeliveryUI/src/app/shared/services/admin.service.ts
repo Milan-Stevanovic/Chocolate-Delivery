@@ -26,7 +26,7 @@ export class AdminService {
     }
 
     getAllOrders(): Observable<OrderDisplay[]>{
-      return this.http.get<OrderDisplay[]>(environment.serverURL + '/api/deliverer/getAllOrders');
+      return this.http.get<OrderDisplay[]>(environment.serverURL + '/api/admin/getAllOrders');
     }
 }
   

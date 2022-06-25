@@ -86,5 +86,11 @@ namespace ChocolateDeliveryVS.Controllers
         {
             return Ok(_userService.UpdateUserProfile(userProfileDto));
         }
+
+        [HttpPost("changePassword")]
+        public IActionResult ChangePassword([FromBody] ChangePasswordDto changePasswordDto)
+        {
+            return Ok(_userService.ChangePassword(changePasswordDto));
+        }
     }
 }
