@@ -181,5 +181,10 @@ namespace ChocolateDeliveryVS.Services
             }
             return false;
         }
+
+        public bool VerificationStatus(int userId)
+        {
+            return _dbContext.Users.Find(Convert.ToInt64(userId)).Verified;
+        }
     }
 }

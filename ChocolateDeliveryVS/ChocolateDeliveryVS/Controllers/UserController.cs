@@ -92,5 +92,11 @@ namespace ChocolateDeliveryVS.Controllers
         {
             return Ok(_userService.ChangePassword(changePasswordDto));
         }
+
+        [HttpGet("verificationStatus/{userID}")]
+        public IActionResult VerificationStatus(int userId)
+        {
+            return Ok(_userService.VerificationStatus(userId));
+        }
     }
 }

@@ -96,6 +96,15 @@
                 <hr/>
 
                 <div class="row">
+                    <div class="col verification">
+                        <a (click)="VerificationStatus()">
+                            <div class="dashboard-item" >
+                                <img src="/assets/icons/verified-icon.png" class="dashboard-icon"/><br/>
+                                Verification Status
+                            </div>
+                        </a>
+                    </div>
+
                     <div class="col">
                         <a routerLink="/profile">
                             <div class="dashboard-item">
@@ -108,7 +117,7 @@
                     <div class="col">
                         <a routerLink="/changePassword">
                             <div class="dashboard-item">
-                                <img src="/assets/icons/password.png" class="dashboard-icon"/><br/>
+                                <img src="/assets/icons/password-icon.png" class="dashboard-icon"/><br/>
                                 Change Password
                             </div>
                         </a>

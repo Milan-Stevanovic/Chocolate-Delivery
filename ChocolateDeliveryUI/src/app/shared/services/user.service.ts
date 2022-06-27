@@ -44,5 +44,9 @@ export class UserService {
     changePassword(changePassword: ChangePassword): Observable<Object>{
       return this.http.post<Object>(environment.serverURL + '/api/users/changePassword', changePassword);
     }
+
+    verificationStatus(userId: number): Observable<Object>{
+      return this.http.get<Object>(environment.serverURL + `/api/users/verificationStatus/${userId}`);
+    }
 }
   

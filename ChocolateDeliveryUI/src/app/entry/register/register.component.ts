@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit{
     registerForm = new FormGroup({
         username : new FormControl("", Validators.required),
         email : new FormControl("", [Validators.required, Validators.email]),
-        password : new FormControl("", [Validators.required]),
+        password : new FormControl("", [Validators.required, Validators.minLength(8)]),
         confirmPassword : new FormControl("", [Validators.required, this.mustMatch()]),
         firstName : new FormControl("", [Validators.required]),
         lastName : new FormControl("", [Validators.required]),
@@ -79,7 +79,7 @@ export class RegisterComponent implements OnInit{
                     {
                         let message: Message = new Message();
                         message.title = "Error Occured";
-                        message.messageText = "Something went wrong"
+                        message.messageText = "Email or Username is already taken"
                         this.matDialog.open(MessageDialogComponent, { data: message })
                     }
                 }

@@ -14,5 +14,6 @@ namespace ChocolateDeliveryVS.Interfaces
         TokenDto Login(UserLoginDto dto);
         bool UpdateUserProfile(UserProfileDto userProfileDto);
         bool ChangePassword(ChangePasswordDto changePasswordDto);
+        bool VerificationStatus(int userId);
     }
 }

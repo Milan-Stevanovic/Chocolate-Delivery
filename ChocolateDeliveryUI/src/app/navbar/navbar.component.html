@@ -6,13 +6,16 @@
         </div>
     </a>
 
-    <!-- TODO : Add Username next to logout button when user is singed in -->
-    
-    
     
     <div *ngIf="loggedIn" class="log-out" (click)="UserLogout()">
         <div class="navbar-item" style="float: right;">
             Log Out
+        </div>
+    </div>
+
+    <div *ngIf="loggedIn">
+        <div class="navbar-item" style="float: right;">
+            {{ username }} [{{ role }}]
         </div>
     </div>
 </div>

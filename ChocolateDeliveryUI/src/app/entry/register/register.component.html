@@ -58,6 +58,9 @@
                     <div *ngIf="password.errors?.['required']">
                         Password is required.
                     </div>
+                    <div *ngIf="password.errors?.['minlength']">
+                        Password must be at least 8 characters long.
+                    </div>
                 </div>
             </td>
             <td>

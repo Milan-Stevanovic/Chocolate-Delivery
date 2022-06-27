@@ -30,17 +30,17 @@ const routes: Routes = [
   { path: 'changePassword', component: ChangePasswordComponent, canActivate:[AuthGuard] },
   
   // customer
-  { path: 'newCurrentOrder', component: NewCurrentOrderComponent, canActivate:[AuthGuard]},
-  { path: 'customerNewOrder', component: CustomerNewOrderComponent, canActivate:[AuthGuard]},
-  { path: 'customerCurrentOrder', component: CustomerCurrentOrderComponent, canActivate:[AuthGuard]},
-  { path: 'pastOrders', component: PastOrdersComponent, canActivate:[AuthGuard]},
+  { path: 'newCurrentOrder', component: NewCurrentOrderComponent, canActivate:[AuthGuard, CustomerAuthGuard]},
+  { path: 'customerNewOrder', component: CustomerNewOrderComponent, canActivate:[AuthGuard, CustomerAuthGuard]},
+  { path: 'customerCurrentOrder', component: CustomerCurrentOrderComponent, canActivate:[AuthGuard, CustomerAuthGuard]},
+  { path: 'pastOrders', component: PastOrdersComponent, canActivate:[AuthGuard, CustomerAuthGuard]},
   
   // deliverer
   { path: 'newOrders', component: NewOrdersComponent, canActivate:[AuthGuard, DelivererAuthGuard]},
-  { path: 'myOrders', component: MyOrdersComponent, canActivate:[AuthGuard]},
-  { path: 'currentOrder', component: CurrentOrderComponent, canActivate:[AuthGuard]},
-  { path: 'delivererCurrentOrder', component: DelivererCurrentOrderCompoenent, canActivate:[AuthGuard]},
-  { path: 'delivererNoOrder', component: DelivererNoOrderComponent, canActivate:[AuthGuard]},
+  { path: 'myOrders', component: MyOrdersComponent, canActivate:[AuthGuard, DelivererAuthGuard]},
+  { path: 'currentOrder', component: CurrentOrderComponent, canActivate:[AuthGuard, DelivererAuthGuard]},
+  { path: 'delivererCurrentOrder', component: DelivererCurrentOrderCompoenent, canActivate:[AuthGuard, DelivererAuthGuard]},
+  { path: 'delivererNoOrder', component: DelivererNoOrderComponent, canActivate:[AuthGuard, DelivererAuthGuard]},
   
   // admin
   { path: 'verification', component: VerificationComponent, canActivate:[AuthGuard, AdminAuthGuard] },
