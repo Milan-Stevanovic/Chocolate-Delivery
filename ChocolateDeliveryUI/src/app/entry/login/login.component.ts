@@ -66,6 +66,13 @@ export class LoginComponent implements OnInit{
                         message.messageText = "Please check if you entered your info correctly"
                         this.matDialog.open(MessageDialogComponent, { data: message })
                     }
+                },
+                error =>
+                {
+                  let message: Message = new Message();
+                  message.title = "Server Error";
+                  message.messageText = "Please try again later or contact site administrator."
+                  this.matDialog.open(MessageDialogComponent, { data: message })
                 }
             );
         }

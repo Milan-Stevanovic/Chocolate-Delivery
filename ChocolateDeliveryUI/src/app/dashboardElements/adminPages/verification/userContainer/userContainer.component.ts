@@ -32,6 +32,13 @@ export class UserContainerComponent implements OnInit{
                     message.messageText = "Could not verify user!"
                     this.matDialog.open(MessageDialogComponent, { data: message })
                 }
+            },
+            error =>
+            {
+              let message: Message = new Message();
+              message.title = "Server Error";
+              message.messageText = "Please try again later or contact site administrator."
+              this.matDialog.open(MessageDialogComponent, { data: message })
             }
           )
     }
@@ -51,6 +58,13 @@ export class UserContainerComponent implements OnInit{
                     message.messageText = "Could not reject user!"
                     this.matDialog.open(MessageDialogComponent, { data: message })
                 }
+            },
+            error =>
+            {
+              let message: Message = new Message();
+              message.title = "Server Error";
+              message.messageText = "Please try again later or contact site administrator."
+              this.matDialog.open(MessageDialogComponent, { data: message })
             }
           )
     }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChocolateDeliveryVS.Migrations
 {
     [DbContext(typeof(DeliveryDbContext))]
-    [Migration("20220615201723_DeliveryMigration")]
+    [Migration("20220711193253_DeliveryMigration")]
     partial class DeliveryMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -20,7 +20,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   changePasswordForm = new FormGroup({
-    newPassword : new FormControl('' , [Validators.required]),
+    newPassword : new FormControl('' , [Validators.required, Validators.minLength(8)]),
     confirmNewPassword : new FormControl('', [Validators.required, this.mustMatch()]),
   })
  
@@ -56,8 +56,8 @@ export class ChangePasswordComponent implements OnInit {
         error =>
         {
           let message: Message = new Message();
-          message.title = "Error";
-          message.messageText = "Server error."
+          message.title = "Server Error";
+          message.messageText = "Please try again later or contact site administrator."
           this.matDialog.open(MessageDialogComponent, { data: message })
         }
       );

@@ -41,8 +41,8 @@ export class ProfileComponent implements OnInit {
       error =>
       {
         let message: Message = new Message();
-        message.title = "Fetch Error";
-        message.messageText = "Could not fetch user data!"
+        message.title = "Server Error";
+        message.messageText = "Please try again later or contact site administrator."
         this.matDialog.open(MessageDialogComponent, { data: message })
       }
     )

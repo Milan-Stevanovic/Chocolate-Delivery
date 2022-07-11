@@ -3,7 +3,6 @@
     <p style="height: 40px;"> {{ product.ingredients }}</p>
     <img [src]="createImgPath(product.picture)" class="product-image"/><br/><br/>
     <p>Price: {{ product.price }} RSD</p>
-    
     <form [formGroup]="addProductForm" (ngSubmit)="AddProduct()">
         <table style="width:100%;">
             <tr>

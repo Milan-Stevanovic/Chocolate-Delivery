@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { MessageDialogComponent } from "src/app/dialogs/messageDialog/messageDialog.component";
+import { Message } from "src/app/shared/models/message.model";
 import { OrderDisplay } from "src/app/shared/models/orderDisplay.model";
 import { CustomerService } from "src/app/shared/services/customer.service";
 
@@ -12,7 +15,7 @@ export class PastOrdersComponent implements OnInit {
     
     pastOrders : OrderDisplay[] = [];
     
-    constructor(private customerService : CustomerService) 
+    constructor(private customerService : CustomerService, private matDialog: MatDialog) 
     {
         // get all past orders
         let token = localStorage.getItem('token');
@@ -27,6 +30,13 @@ export class PastOrdersComponent implements OnInit {
             (data: OrderDisplay[]) => 
             {
                 this.pastOrders = data;
+            },
+            error =>
+            {
+              let message: Message = new Message();
+              message.title = "Server Error";
+              message.messageText = "Please try again later or contact site administrator."
+              this.matDialog.open(MessageDialogComponent, { data: message })
             }
         )
     }

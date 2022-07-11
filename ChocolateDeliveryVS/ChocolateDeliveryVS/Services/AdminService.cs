@@ -72,6 +72,8 @@ namespace ChocolateDeliveryVS.Services
 
         public bool AddNewProduct(ProductDto productDto)
         {
+            if (String.IsNullOrEmpty(productDto.Name) || String.IsNullOrEmpty(productDto.Ingredients) || String.IsNullOrEmpty(productDto.Picture) || productDto.Price < 1)
+                return false;
             _dbContext.Products.Add(_mapper.Map<Product>(productDto));
             _dbContext.SaveChanges();
             return true;
